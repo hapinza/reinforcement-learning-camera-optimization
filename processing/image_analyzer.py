@@ -10,11 +10,11 @@ class ImageAnalyzer:
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) if len(image.shape) == 3 else image
 
 
-        brightness = np.mean(gray)
+        brightness = float(np.mean(gray))
 
-        contrast = np.std(gray)
+        contrast = float(np.std(gray))
 
-        sharpness = cv2.    Laplican(gray, cv2.CV_64F).var()
+        sharpness = float(cv2.Laplacian(gray, cv2.CV_64F).var())
 
         features = {
             "brightness" : brightness,
@@ -27,9 +27,9 @@ class ImageAnalyzer:
     
 
     def compute_defect_probability(self, features):
-        brightness = features[brightness]
-        contrast = features[contrast]
-        sharpness = features[sharpness]
+        brightness = features["brightness"]
+        contrast = features["contrast"]
+        sharpness = features["sharpness"]
 
         brightness_score = max(0, 1 - abs(brightness - 125)/125)
         contrast_score = min(1, contrast/80)

@@ -34,10 +34,11 @@ class camera_controller:
         if exposure is not None:
             exposure_auto = self.cam.ExposureAuto.GetAccessMode()
             if exposure_auto == PySpin.RW:
-                self.cam.ExposureAuto.SetValue(PySpin.ExposureAuto_off)
+                self.cam.ExposureAuto.SetValue(PySpin.ExposureAuto_Off)
             self.cam.ExposureTime.SetValue(exposure)
         if gain is not None:
             self.cam.Gain.SetValue(gain)
+
 
 
     def close(self):
