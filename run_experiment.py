@@ -1,4 +1,4 @@
-from environment import CameraEnvironment
+from environment.camera_environment import CameraEnvironment
 
 env = CameraEnvironment()
 
