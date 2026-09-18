@@ -1,0 +1,7 @@
+__psycache__/
+*.pyc
+test_snapshot.png
+baseline_20000.png
+baseline_30000.png
+baseline_40000.png
+

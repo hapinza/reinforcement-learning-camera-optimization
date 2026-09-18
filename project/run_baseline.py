@@ -20,6 +20,10 @@ SAMPLES_PER_EXPOSURE = 10
 
 CSV_FILE = "baseline_results.csv"
 
+IMAGE_DIR = "experiment_data/baseline"
+os.makedirs(IMAGE_DIR, exist_ok=True)
+
+
 
 def main():
     camera = CameraController()
@@ -29,6 +33,9 @@ def main():
 
     try:
         for exposure in EXPOSURES:
+        
+            exposure_dir = os.path.join(IMAGE_DIR, str(exposure))
+            os.makedirs(exposure_dir, exist_ok = True)
 
             print(f"\n=== Exposure: {exposure} us ===")
 
@@ -44,6 +51,14 @@ def main():
                 if image is None:
                     print("Capture failed")
                     continue
+                    
+                cv2.imwrite(
+                os.path.join(
+                exposure_dir,
+                f"image_{sample + 1:03d}.png"
+       		),
+       		image
+                )
 
                 features = analyzer.extract_features(image)
 

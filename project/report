@@ -1,0 +1,1268 @@
+seongho@seongho-desktop:~$ cd ~/SURF_rl_camera_optimization
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git pull origin main
+From https://github.com/hapinza/SURF_rl_camera_optimization
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   camera/__pycache__/__init__.cpython-310.pyc
+	modified:   environment/__pycache__/__init__.cpython-310.pyc
+	modified:   environment/__pycache__/camera_environment.cpython-310.pyc
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	agent/__pycache__/
+	baseline_20000.png
+	baseline_30000.png
+	baseline_40000.png
+	camera/__pycache__/CameraController.cpython-310.pyc
+	processing/__pycache__/
+	project/capture_test.py
+	project/exposure_baseline.py
+	test_snapshot.png
+
+no changes added to commit (use "git add" and/or "git commit -a")
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ ls project
+capture_test.py  exposure_baseline.py  run_smoke.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git log --online -5
+fatal: unrecognized argument: --online
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git fetch origin
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git log origin/main --oneline -5
+dabca3c (HEAD -> main, origin/main, origin/HEAD) Switch camera acquisition to single-frame snapshots
+e80f471 Update run_experiment.py
+395a1d3 Create run_experiment.py
+80d73b0 Update camera_environment.py
+5c9de4b Update camera_controller.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git lof --oneline -5
+git: 'lof' is not a git command. See 'git --help'.
+
+The most similar command is
+	log
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git log --oneline -5
+dabca3c (HEAD -> main, origin/main, origin/HEAD) Switch camera acquisition to single-frame snapshots
+e80f471 Update run_experiment.py
+395a1d3 Create run_experiment.py
+80d73b0 Update camera_environment.py
+5c9de4b Update camera_controller.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git fetch origin
+remote: Enumerating objects: 20, done.
+remote: Counting objects: 100% (20/20), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 12 (delta 6), reused 12 (delta 6), pack-reused 0 (from 0)
+Unpacking objects: 100% (12/12), 3.68 KiB | 754.00 KiB/s, done.
+From https://github.com/hapinza/SURF_rl_camera_optimization
+   dabca3c..275751d  main       -> origin/main
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git log origin/main --oneline -3
+275751d (origin/main, origin/HEAD) Add PL baseline training and evaluation pipeline
+dabca3c (HEAD -> main) Switch camera acquisition to single-frame snapshots
+e80f471 Update run_experiment.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git status
+On branch main
+Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   camera/__pycache__/__init__.cpython-310.pyc
+	modified:   environment/__pycache__/__init__.cpython-310.pyc
+	modified:   environment/__pycache__/camera_environment.cpython-310.pyc
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	agent/__pycache__/
+	baseline_20000.png
+	baseline_30000.png
+	baseline_40000.png
+	camera/__pycache__/CameraController.cpython-310.pyc
+	processing/__pycache__/
+	project/capture_test.py
+	project/exposure_baseline.py
+	test_snapshot.png
+
+no changes added to commit (use "git add" and/or "git commit -a")
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ ls project
+capture_test.py  exposure_baseline.py  run_smoke.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git restore camera/__pycache__ environment/__pycache__ 
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git status
+On branch main
+Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	agent/__pycache__/
+	baseline_20000.png
+	baseline_30000.png
+	baseline_40000.png
+	camera/__pycache__/CameraController.cpython-310.pyc
+	processing/__pycache__/
+	project/capture_test.py
+	project/exposure_baseline.py
+	test_snapshot.png
+
+nothing added to commit but untracked files present (use "git add" to track)
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git pull origin main
+From https://github.com/hapinza/SURF_rl_camera_optimization
+ * branch            main       -> FETCH_HEAD
+Updating dabca3c..275751d
+Fast-forward
+ agent/RLAgent.py                  |  50 +++++++++---
+ camera/CameraController.py        |   3 +
+ environment/camera_environment.py |  17 ++---
+ project/run_baseline.py           | 133 ++++++++++++++++++++++++++++++++
+ project/run_evaluation.py         | 157 ++++++++++++++++++++++++++++++++++++++
+ project/run_training.py           |  81 ++++++++++++++++++++
+ 6 files changed, 422 insertions(+), 19 deletions(-)
+ create mode 100644 project/run_baseline.py
+ create mode 100644 project/run_evaluation.py
+ create mode 100644 project/run_training.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ ls project
+capture_test.py       run_baseline.py    run_smoke.py
+exposure_baseline.py  run_evaluation.py  run_training.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_bsaeline.py
+python3: can't open file '/home/seongho/SURF_rl_camera_optimization/project/run_bsaeline.py': [Errno 2] No such file or directory
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ cd project
+seongho@seongho-desktop:~/SURF_rl_camera_optimization/project$ python3 project/run_bsaeline.py
+python3: can't open file '/home/seongho/SURF_rl_camera_optimization/project/project/run_bsaeline.py': [Errno 2] No such file or directory
+seongho@seongho-desktop:~/SURF_rl_camera_optimization/project$ python3 project/run_bsaeline.py
+python3: can't open file '/home/seongho/SURF_rl_camera_optimization/project/project/run_bsaeline.py': [Errno 2] No such file or directory
+seongho@seongho-desktop:~/SURF_rl_camera_optimization/project$ cd ..
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_baseline.py
+camera initialized
+image analyzer is initilaized
+
+=== Exposure: 20000 us ===
+01 | B=39.41 C=3.23 S=6.73 Proxy=0.8792
+02 | B=39.49 C=3.25 S=6.74 Proxy=0.8789
+03 | B=39.28 C=3.26 S=6.72 Proxy=0.8794
+04 | B=39.56 C=3.25 S=6.72 Proxy=0.8787
+05 | B=39.29 C=3.26 S=6.72 Proxy=0.8794
+06 | B=39.39 C=3.25 S=6.73 Proxy=0.8792
+07 | B=39.36 C=3.26 S=6.71 Proxy=0.8792
+08 | B=39.42 C=3.25 S=6.72 Proxy=0.8791
+09 | B=39.43 C=3.26 S=6.72 Proxy=0.8790
+10 | B=39.44 C=3.22 S=6.71 Proxy=0.8792
+
+=== Exposure: 30000 us ===
+01 | B=43.03 C=4.52 S=7.04 Proxy=0.8641
+02 | B=43.13 C=4.51 S=7.02 Proxy=0.8638
+03 | B=42.94 C=4.51 S=7.06 Proxy=0.8643
+04 | B=43.09 C=4.52 S=7.03 Proxy=0.8639
+05 | B=43.05 C=4.52 S=7.03 Proxy=0.8640
+06 | B=42.99 C=4.53 S=7.03 Proxy=0.8641
+07 | B=42.95 C=4.53 S=7.04 Proxy=0.8642
+08 | B=42.86 C=4.53 S=7.07 Proxy=0.8645
+09 | B=42.76 C=4.53 S=7.08 Proxy=0.8647
+10 | B=42.85 C=4.53 S=7.08 Proxy=0.8645
+
+=== Exposure: 40000 us ===
+01 | B=45.99 C=5.70 S=6.79 Proxy=0.8514
+02 | B=46.10 C=5.68 S=6.78 Proxy=0.8511
+03 | B=46.03 C=5.71 S=6.79 Proxy=0.8512
+04 | B=46.20 C=5.68 S=6.78 Proxy=0.8509
+05 | B=46.02 C=5.70 S=6.79 Proxy=0.8513
+06 | B=45.98 C=5.70 S=6.79 Proxy=0.8514
+07 | B=45.94 C=5.70 S=6.79 Proxy=0.8515
+08 | B=45.86 C=5.71 S=6.80 Proxy=0.8517
+09 | B=45.99 C=5.69 S=6.80 Proxy=0.8514
+10 | B=45.94 C=5.70 S=6.79 Proxy=0.8515
+
+=== SUMMARY ===
+
+Exposure 20000 us
+brightness: mean=39.4076, std=0.0797
+contrast: mean=3.2505, std=0.0121
+sharpness: mean=6.7215, std=0.0077
+proxy: mean=0.8791, std=0.0002
+
+Exposure 30000 us
+brightness: mean=42.9659, std=0.1108
+contrast: mean=4.5224, std=0.0076
+sharpness: mean=7.0478, std=0.0206
+proxy: mean=0.8642, std=0.0003
+
+Exposure 40000 us
+brightness: mean=46.0066, std=0.0894
+contrast: mean=5.6957, std=0.0085
+sharpness: mean=6.7909, std=0.0056
+proxy: mean=0.8513, std=0.0002
+
+Saved: baseline_results.csv
+camera closed
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_training.py
+camera initialized
+image analyzer is initilaized
+Step 001 | Exposure=30000 | Reward=-0.0050
+Step 002 | Exposure=40000 | Reward=0.0023
+Step 003 | Exposure=20000 | Reward=-0.0046
+Step 004 | Exposure=30000 | Reward=0.0015
+Step 005 | Exposure=40000 | Reward=0.0033
+Step 006 | Exposure=40000 | Reward=-0.0027
+Step 007 | Exposure=40000 | Reward=0.0028
+Step 008 | Exposure=40000 | Reward=-0.0011
+Step 009 | Exposure=40000 | Reward=0.0020
+Step 010 | Exposure=40000 | Reward=0.0021
+Step 011 | Exposure=40000 | Reward=0.0024
+Step 012 | Exposure=30000 | Reward=-0.0054
+Step 013 | Exposure=40000 | Reward=-0.0029
+Step 014 | Exposure=40000 | Reward=0.0003
+Step 015 | Exposure=40000 | Reward=0.0028
+Step 016 | Exposure=40000 | Reward=-0.0030
+Step 017 | Exposure=40000 | Reward=-0.0002
+Step 018 | Exposure=40000 | Reward=-0.0000
+Step 019 | Exposure=40000 | Reward=-0.0014
+Step 020 | Exposure=40000 | Reward=0.0028
+Step 021 | Exposure=30000 | Reward=0.0007
+Step 022 | Exposure=40000 | Reward=-0.0011
+Step 023 | Exposure=40000 | Reward=0.0000
+Step 024 | Exposure=40000 | Reward=-0.0021
+Step 025 | Exposure=40000 | Reward=0.0057
+Step 026 | Exposure=20000 | Reward=0.0024
+Step 027 | Exposure=30000 | Reward=-0.0000
+Step 028 | Exposure=30000 | Reward=0.0001
+Step 029 | Exposure=40000 | Reward=-0.0030
+Step 030 | Exposure=40000 | Reward=-0.0025
+Step 031 | Exposure=40000 | Reward=0.0012
+Step 032 | Exposure=40000 | Reward=-0.0065
+Step 033 | Exposure=40000 | Reward=-0.0046
+Step 034 | Exposure=20000 | Reward=-0.0004
+Step 035 | Exposure=30000 | Reward=0.0010
+Step 036 | Exposure=30000 | Reward=-0.0014
+Step 037 | Exposure=20000 | Reward=0.0005
+Step 038 | Exposure=30000 | Reward=-0.0030
+Step 039 | Exposure=20000 | Reward=-0.0000
+Step 040 | Exposure=20000 | Reward=0.0010
+Step 041 | Exposure=20000 | Reward=0.0011
+Step 042 | Exposure=30000 | Reward=-0.0032
+Step 043 | Exposure=20000 | Reward=0.0058
+Step 044 | Exposure=20000 | Reward=-0.0039
+Step 045 | Exposure=40000 | Reward=-0.0076
+Step 046 | Exposure=20000 | Reward=-0.0010
+Step 047 | Exposure=20000 | Reward=-0.0014
+Step 048 | Exposure=20000 | Reward=-0.0040
+Step 049 | Exposure=30000 | Reward=-0.0011
+Step 050 | Exposure=20000 | Reward=-0.0075
+Q-table saved to q_table.pkl
+
+Training complete
+Learned states: 3
+Saved: q_table.pkl
+Saved: training_results.csv
+camera closed
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_evaluation.py
+camera initialized
+image analyzer is initilaized
+Q-table loaded from /home/seongho/SURF_rl_camera_optimization/q_table.pkl
+=== Evaluation started ===
+Loaded states: 3
+Epsilon: 0.0
+Step 001 | Exposure=30000 | Before=0.8802 | After=0.8803 | Reward=-0.0003 | Seen=True
+Step 002 | Exposure=30000 | Before=0.8654 | After=0.8652 | Reward=0.0023 | Seen=True
+Step 003 | Exposure=30000 | Before=0.8655 | After=0.8658 | Reward=-0.0029 | Seen=True
+Step 004 | Exposure=30000 | Before=0.8658 | After=0.8656 | Reward=0.0019 | Seen=True
+Step 005 | Exposure=30000 | Before=0.8654 | After=0.8657 | Reward=-0.0031 | Seen=True
+Step 006 | Exposure=30000 | Before=0.8653 | After=0.8651 | Reward=0.0018 | Seen=True
+Step 007 | Exposure=30000 | Before=0.8656 | After=0.8654 | Reward=0.0022 | Seen=True
+Step 008 | Exposure=30000 | Before=0.8657 | After=0.8654 | Reward=0.0027 | Seen=True
+Step 009 | Exposure=30000 | Before=0.8653 | After=0.8654 | Reward=-0.0012 | Seen=True
+Step 010 | Exposure=30000 | Before=0.8653 | After=0.8654 | Reward=-0.0006 | Seen=True
+Step 011 | Exposure=30000 | Before=0.8653 | After=0.8646 | Reward=0.0076 | Seen=True
+Step 012 | Exposure=30000 | Before=0.8652 | After=0.8649 | Reward=0.0023 | Seen=True
+Step 013 | Exposure=30000 | Before=0.8651 | After=0.8653 | Reward=-0.0019 | Seen=True
+Step 014 | Exposure=30000 | Before=0.8653 | After=0.8650 | Reward=0.0027 | Seen=True
+Step 015 | Exposure=30000 | Before=0.8650 | After=0.8652 | Reward=-0.0017 | Seen=True
+Step 016 | Exposure=30000 | Before=0.8648 | After=0.8655 | Reward=-0.0065 | Seen=True
+Step 017 | Exposure=30000 | Before=0.8653 | After=0.8651 | Reward=0.0019 | Seen=True
+Step 018 | Exposure=30000 | Before=0.8654 | After=0.8652 | Reward=0.0027 | Seen=True
+Step 019 | Exposure=30000 | Before=0.8660 | After=0.8653 | Reward=0.0066 | Seen=True
+Step 020 | Exposure=30000 | Before=0.8653 | After=0.8655 | Reward=-0.0020 | Seen=True
+Step 021 | Exposure=30000 | Before=0.8652 | After=0.8648 | Reward=0.0044 | Seen=True
+Step 022 | Exposure=30000 | Before=0.8650 | After=0.8652 | Reward=-0.0015 | Seen=True
+Step 023 | Exposure=30000 | Before=0.8652 | After=0.8656 | Reward=-0.0042 | Seen=True
+Step 024 | Exposure=30000 | Before=0.8655 | After=0.8651 | Reward=0.0045 | Seen=True
+Step 025 | Exposure=30000 | Before=0.8657 | After=0.8648 | Reward=0.0099 | Seen=True
+Step 026 | Exposure=30000 | Before=0.8655 | After=0.8652 | Reward=0.0032 | Seen=True
+Step 027 | Exposure=30000 | Before=0.8650 | After=0.8656 | Reward=-0.0064 | Seen=True
+Step 028 | Exposure=30000 | Before=0.8652 | After=0.8649 | Reward=0.0029 | Seen=True
+Step 029 | Exposure=30000 | Before=0.8652 | After=0.8655 | Reward=-0.0037 | Seen=True
+Step 030 | Exposure=30000 | Before=0.8654 | After=0.8654 | Reward=-0.0005 | Seen=True
+
+=== Evaluation Summary ===
+Mean after proxy: 0.8658
+Std after proxy: 0.0027
+Mean reward: 0.0008
+Known states: 30/30
+Saved: /home/seongho/SURF_rl_camera_optimization/evaluation_results.csv
+camera closed
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 - <<'PY'
+> import pickle
+> with open("q_table.pkl", "rb") as f:
+> for state, values in q.items():
+> print("State:", state)
+> print("Q-values:", values)
+> print()
+> PY
+  File "<stdin>", line 3
+    for state, values in q.items():
+    ^
+IndentationError: expected an indented block after 'with' statement on line 2
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 -c "import pickle; q=pickle.load(open("q_table.pkl","rb")); [print("State:",s,"\nQ-values:",v,"\n") for s,v in q.items()]'
+> ^C
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 -c 'import pickle; q=pickle.load(open("q_table.pkl","rb")); [print("State:",s,"\nQ-values:",v,"\n") for s,v in q.items()]'
+State: (45, 4, 5) 
+Q-values: {0: -0.00021424001266559734, 1: -0.0007144491281377806, 2: -0.0002652019372954544} 
+
+State: (40, 4, 5) 
+Q-values: {0: -0.00013258696280120754, 1: -0.00011867769139177577, 2: -0.00015392980749666423} 
+
+State: (35, 2, 5) 
+Q-values: {0: -0.0007196041581815924, 1: -0.0004518641673246229, 2: -0.0007603608264376005} 
+
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ grep -n "load_q_table\|CameraEnvironment\|STEPS" project/run_training.py
+12:from environment.camera_environment import CameraEnvironment
+15:STEPS = 300
+21:    env = CameraEnvironment()
+25:        for _ in range(STEPS):
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_training.py
+camera initialized
+image analyzer is initilaized
+Step 001 | Exposure=40000 | Reward=0.0070
+Step 002 | Exposure=40000 | Reward=-0.0040
+Step 003 | Exposure=20000 | Reward=0.0026
+Step 004 | Exposure=20000 | Reward=0.0043
+Step 005 | Exposure=20000 | Reward=-0.0089
+Step 006 | Exposure=40000 | Reward=-0.0048
+Step 007 | Exposure=20000 | Reward=0.0027
+Step 008 | Exposure=30000 | Reward=0.0052
+Step 009 | Exposure=40000 | Reward=-0.0029
+Step 010 | Exposure=20000 | Reward=-0.0035
+Step 011 | Exposure=30000 | Reward=-0.0018
+Step 012 | Exposure=40000 | Reward=-0.0013
+Step 013 | Exposure=20000 | Reward=-0.0014
+Step 014 | Exposure=30000 | Reward=-0.0026
+Step 015 | Exposure=40000 | Reward=0.0041
+Step 016 | Exposure=20000 | Reward=-0.0036
+Step 017 | Exposure=40000 | Reward=-0.0029
+Step 018 | Exposure=30000 | Reward=0.0025
+Step 019 | Exposure=40000 | Reward=-0.0037
+Step 020 | Exposure=30000 | Reward=-0.0009
+Step 021 | Exposure=40000 | Reward=-0.0002
+Step 022 | Exposure=30000 | Reward=-0.0009
+Step 023 | Exposure=40000 | Reward=0.0037
+Step 024 | Exposure=30000 | Reward=0.0004
+Step 025 | Exposure=40000 | Reward=-0.0005
+Step 026 | Exposure=30000 | Reward=-0.0006
+Step 027 | Exposure=30000 | Reward=0.0022
+Step 028 | Exposure=40000 | Reward=0.0050
+Step 029 | Exposure=30000 | Reward=0.0017
+Step 030 | Exposure=20000 | Reward=0.0018
+Step 031 | Exposure=30000 | Reward=-0.0013
+Step 032 | Exposure=40000 | Reward=-0.0017
+Step 033 | Exposure=30000 | Reward=0.0033
+Step 034 | Exposure=40000 | Reward=-0.0017
+Step 035 | Exposure=30000 | Reward=-0.0068
+Step 036 | Exposure=40000 | Reward=-0.0029
+Step 037 | Exposure=30000 | Reward=-0.0011
+Step 038 | Exposure=40000 | Reward=-0.0022
+Step 039 | Exposure=30000 | Reward=-0.0043
+Step 040 | Exposure=20000 | Reward=0.0075
+Step 041 | Exposure=40000 | Reward=0.0006
+Step 042 | Exposure=20000 | Reward=-0.0002
+Step 043 | Exposure=30000 | Reward=0.0058
+Step 044 | Exposure=20000 | Reward=-0.0002
+Step 045 | Exposure=30000 | Reward=0.0026
+Step 046 | Exposure=20000 | Reward=-0.0023
+Step 047 | Exposure=30000 | Reward=0.0025
+Step 048 | Exposure=20000 | Reward=0.0030
+Step 049 | Exposure=30000 | Reward=-0.0006
+Step 050 | Exposure=20000 | Reward=0.0019
+Step 051 | Exposure=30000 | Reward=-0.0022
+Step 052 | Exposure=20000 | Reward=-0.0033
+Step 053 | Exposure=20000 | Reward=0.0088
+Step 054 | Exposure=30000 | Reward=-0.0003
+Step 055 | Exposure=20000 | Reward=0.0009
+Step 056 | Exposure=30000 | Reward=-0.0038
+Step 057 | Exposure=30000 | Reward=0.0014
+Step 058 | Exposure=20000 | Reward=0.0054
+Step 059 | Exposure=20000 | Reward=-0.0017
+Step 060 | Exposure=20000 | Reward=0.0046
+Step 061 | Exposure=20000 | Reward=0.0005
+Step 062 | Exposure=20000 | Reward=0.0009
+Step 063 | Exposure=20000 | Reward=-0.0016
+Step 064 | Exposure=20000 | Reward=0.0003
+Step 065 | Exposure=20000 | Reward=0.0021
+Step 066 | Exposure=20000 | Reward=0.0018
+Step 067 | Exposure=20000 | Reward=-0.0048
+Step 068 | Exposure=20000 | Reward=0.0048
+Step 069 | Exposure=40000 | Reward=0.0048
+Step 070 | Exposure=20000 | Reward=-0.0027
+Step 071 | Exposure=20000 | Reward=-0.0004
+Step 072 | Exposure=40000 | Reward=-0.0024
+Step 073 | Exposure=40000 | Reward=0.0015
+Step 074 | Exposure=40000 | Reward=-0.0044
+Step 075 | Exposure=20000 | Reward=-0.0032
+Step 076 | Exposure=20000 | Reward=0.0053
+Step 077 | Exposure=20000 | Reward=0.0015
+Step 078 | Exposure=20000 | Reward=-0.0034
+Step 079 | Exposure=20000 | Reward=-0.0052
+Step 080 | Exposure=20000 | Reward=0.0018
+Step 081 | Exposure=20000 | Reward=-0.0037
+Step 082 | Exposure=20000 | Reward=0.0057
+Step 083 | Exposure=20000 | Reward=-0.0013
+Step 084 | Exposure=40000 | Reward=0.0027
+Step 085 | Exposure=30000 | Reward=0.0018
+Step 086 | Exposure=20000 | Reward=-0.0030
+Step 087 | Exposure=40000 | Reward=0.0041
+Step 088 | Exposure=30000 | Reward=-0.0043
+Step 089 | Exposure=20000 | Reward=0.0023
+Step 090 | Exposure=20000 | Reward=-0.0015
+Step 091 | Exposure=20000 | Reward=0.0017
+Step 092 | Exposure=20000 | Reward=-0.0033
+Step 093 | Exposure=40000 | Reward=0.0025
+Step 094 | Exposure=40000 | Reward=0.0016
+Step 095 | Exposure=30000 | Reward=-0.0004
+Step 096 | Exposure=20000 | Reward=0.0110
+Step 097 | Exposure=30000 | Reward=-0.0068
+Step 098 | Exposure=40000 | Reward=-0.0033
+Step 099 | Exposure=40000 | Reward=-0.0022
+Step 100 | Exposure=40000 | Reward=-0.0036
+Step 101 | Exposure=30000 | Reward=0.0023
+Step 102 | Exposure=20000 | Reward=-0.0005
+Step 103 | Exposure=40000 | Reward=0.0028
+Step 104 | Exposure=20000 | Reward=-0.0031
+Step 105 | Exposure=20000 | Reward=-0.0043
+Step 106 | Exposure=40000 | Reward=-0.0008
+Step 107 | Exposure=30000 | Reward=-0.0001
+Step 108 | Exposure=20000 | Reward=0.0030
+Step 109 | Exposure=30000 | Reward=0.0022
+Step 110 | Exposure=20000 | Reward=-0.0064
+Step 111 | Exposure=40000 | Reward=0.0033
+Step 112 | Exposure=30000 | Reward=0.0034
+Step 113 | Exposure=20000 | Reward=-0.0042
+Step 114 | Exposure=40000 | Reward=0.0026
+Step 115 | Exposure=30000 | Reward=0.0049
+Step 116 | Exposure=20000 | Reward=-0.0006
+Step 117 | Exposure=40000 | Reward=0.0036
+Step 118 | Exposure=30000 | Reward=0.0032
+Step 119 | Exposure=20000 | Reward=-0.0018
+Step 120 | Exposure=40000 | Reward=-0.0015
+Step 121 | Exposure=30000 | Reward=-0.0011
+Step 122 | Exposure=20000 | Reward=-0.0025
+Step 123 | Exposure=40000 | Reward=0.0014
+Step 124 | Exposure=30000 | Reward=0.0011
+Step 125 | Exposure=20000 | Reward=-0.0007
+Step 126 | Exposure=40000 | Reward=0.0030
+Step 127 | Exposure=30000 | Reward=-0.0029
+Step 128 | Exposure=30000 | Reward=-0.0006
+Step 129 | Exposure=20000 | Reward=0.0020
+Step 130 | Exposure=40000 | Reward=-0.0019
+Step 131 | Exposure=30000 | Reward=-0.0056
+Step 132 | Exposure=20000 | Reward=-0.0048
+Step 133 | Exposure=40000 | Reward=-0.0058
+Step 134 | Exposure=30000 | Reward=0.0023
+Step 135 | Exposure=40000 | Reward=-0.0032
+Step 136 | Exposure=30000 | Reward=-0.0019
+Step 137 | Exposure=20000 | Reward=-0.0031
+Step 138 | Exposure=40000 | Reward=0.0005
+Step 139 | Exposure=30000 | Reward=0.0021
+Step 140 | Exposure=30000 | Reward=-0.0021
+Step 141 | Exposure=20000 | Reward=0.0066
+Step 142 | Exposure=40000 | Reward=0.0056
+Step 143 | Exposure=40000 | Reward=-0.0012
+Step 144 | Exposure=30000 | Reward=-0.0006
+Step 145 | Exposure=20000 | Reward=0.0028
+Step 146 | Exposure=40000 | Reward=0.0033
+Step 147 | Exposure=30000 | Reward=0.0032
+Step 148 | Exposure=20000 | Reward=-0.0009
+Step 149 | Exposure=40000 | Reward=-0.0051
+Step 150 | Exposure=30000 | Reward=-0.0022
+Step 151 | Exposure=20000 | Reward=-0.0004
+Step 152 | Exposure=40000 | Reward=-0.0031
+Step 153 | Exposure=30000 | Reward=-0.0014
+Step 154 | Exposure=40000 | Reward=-0.0010
+Step 155 | Exposure=30000 | Reward=0.0013
+Step 156 | Exposure=20000 | Reward=0.0024
+Step 157 | Exposure=40000 | Reward=-0.0023
+Step 158 | Exposure=30000 | Reward=0.0018
+Step 159 | Exposure=20000 | Reward=0.0010
+Step 160 | Exposure=40000 | Reward=0.0046
+Step 161 | Exposure=30000 | Reward=0.0005
+Step 162 | Exposure=20000 | Reward=0.0038
+Step 163 | Exposure=40000 | Reward=-0.0007
+Step 164 | Exposure=30000 | Reward=0.0039
+Step 165 | Exposure=20000 | Reward=0.0023
+Step 166 | Exposure=40000 | Reward=0.0008
+Step 167 | Exposure=30000 | Reward=0.0041
+Step 168 | Exposure=20000 | Reward=0.0017
+Step 169 | Exposure=40000 | Reward=-0.0023
+Step 170 | Exposure=30000 | Reward=0.0010
+Step 171 | Exposure=20000 | Reward=-0.0003
+Step 172 | Exposure=40000 | Reward=0.0029
+Step 173 | Exposure=30000 | Reward=0.0009
+Step 174 | Exposure=20000 | Reward=-0.0021
+Step 175 | Exposure=40000 | Reward=0.0021
+Step 176 | Exposure=30000 | Reward=-0.0000
+Step 177 | Exposure=20000 | Reward=-0.0041
+Step 178 | Exposure=40000 | Reward=0.0047
+Step 179 | Exposure=30000 | Reward=0.0019
+Step 180 | Exposure=20000 | Reward=-0.0007
+Step 181 | Exposure=40000 | Reward=-0.0018
+Step 182 | Exposure=20000 | Reward=0.0004
+Step 183 | Exposure=40000 | Reward=0.0001
+Step 184 | Exposure=30000 | Reward=-0.0015
+Step 185 | Exposure=20000 | Reward=0.0033
+Step 186 | Exposure=40000 | Reward=-0.0018
+Step 187 | Exposure=30000 | Reward=-0.0000
+Step 188 | Exposure=20000 | Reward=0.0015
+Step 189 | Exposure=40000 | Reward=-0.0020
+Step 190 | Exposure=30000 | Reward=-0.0014
+Step 191 | Exposure=30000 | Reward=0.0007
+Step 192 | Exposure=20000 | Reward=-0.0003
+Step 193 | Exposure=40000 | Reward=0.0047
+Step 194 | Exposure=20000 | Reward=0.0008
+Step 195 | Exposure=40000 | Reward=0.0063
+Step 196 | Exposure=40000 | Reward=0.0017
+Step 197 | Exposure=40000 | Reward=-0.0004
+Step 198 | Exposure=30000 | Reward=0.0003
+Step 199 | Exposure=20000 | Reward=-0.0017
+Step 200 | Exposure=40000 | Reward=-0.0037
+Step 201 | Exposure=30000 | Reward=-0.0008
+Step 202 | Exposure=40000 | Reward=-0.0020
+Step 203 | Exposure=30000 | Reward=-0.0032
+Step 204 | Exposure=30000 | Reward=0.0026
+Step 205 | Exposure=20000 | Reward=-0.0048
+Step 206 | Exposure=40000 | Reward=-0.0041
+Step 207 | Exposure=30000 | Reward=-0.0018
+Step 208 | Exposure=20000 | Reward=-0.0071
+Step 209 | Exposure=40000 | Reward=0.0019
+Step 210 | Exposure=30000 | Reward=-0.0001
+Step 211 | Exposure=30000 | Reward=-0.0003
+Step 212 | Exposure=30000 | Reward=-0.0028
+Step 213 | Exposure=20000 | Reward=0.0007
+Step 214 | Exposure=40000 | Reward=-0.0040
+Step 215 | Exposure=30000 | Reward=0.0001
+Step 216 | Exposure=30000 | Reward=0.0038
+Step 217 | Exposure=30000 | Reward=-0.0040
+Step 218 | Exposure=20000 | Reward=0.0041
+Step 219 | Exposure=40000 | Reward=0.0006
+Step 220 | Exposure=30000 | Reward=-0.0014
+Step 221 | Exposure=20000 | Reward=0.0003
+Step 222 | Exposure=20000 | Reward=0.0003
+Step 223 | Exposure=40000 | Reward=0.0001
+Step 224 | Exposure=30000 | Reward=-0.0021
+Step 225 | Exposure=20000 | Reward=0.0015
+Step 226 | Exposure=40000 | Reward=0.0038
+Step 227 | Exposure=40000 | Reward=0.0028
+Step 228 | Exposure=30000 | Reward=-0.0034
+Step 229 | Exposure=20000 | Reward=-0.0032
+Step 230 | Exposure=40000 | Reward=0.0016
+Step 231 | Exposure=20000 | Reward=-0.0019
+Step 232 | Exposure=30000 | Reward=0.0003
+Step 233 | Exposure=20000 | Reward=0.0019
+Step 234 | Exposure=20000 | Reward=-0.0004
+Step 235 | Exposure=40000 | Reward=-0.0020
+Step 236 | Exposure=40000 | Reward=-0.0023
+Step 237 | Exposure=30000 | Reward=-0.0021
+Step 238 | Exposure=20000 | Reward=-0.0046
+Step 239 | Exposure=40000 | Reward=0.0029
+Step 240 | Exposure=40000 | Reward=-0.0008
+Step 241 | Exposure=30000 | Reward=-0.0001
+Step 242 | Exposure=30000 | Reward=-0.0012
+Step 243 | Exposure=20000 | Reward=0.0064
+Step 244 | Exposure=40000 | Reward=-0.0049
+Step 245 | Exposure=30000 | Reward=0.0009
+Step 246 | Exposure=20000 | Reward=0.0023
+Step 247 | Exposure=40000 | Reward=0.0057
+Step 248 | Exposure=30000 | Reward=-0.0018
+Step 249 | Exposure=20000 | Reward=0.0005
+Step 250 | Exposure=30000 | Reward=0.0045
+Step 251 | Exposure=20000 | Reward=0.0002
+Step 252 | Exposure=40000 | Reward=0.0001
+Step 253 | Exposure=40000 | Reward=0.0021
+Step 254 | Exposure=40000 | Reward=0.0000
+Step 255 | Exposure=40000 | Reward=-0.0014
+Step 256 | Exposure=40000 | Reward=0.0030
+Step 257 | Exposure=40000 | Reward=0.0006
+Step 258 | Exposure=40000 | Reward=-0.0003
+Step 259 | Exposure=40000 | Reward=0.0033
+Step 260 | Exposure=40000 | Reward=0.0016
+Step 261 | Exposure=40000 | Reward=-0.0034
+Step 262 | Exposure=40000 | Reward=-0.0029
+Step 263 | Exposure=40000 | Reward=-0.0053
+Step 264 | Exposure=30000 | Reward=-0.0030
+Step 265 | Exposure=20000 | Reward=-0.0020
+Step 266 | Exposure=40000 | Reward=-0.0060
+Step 267 | Exposure=20000 | Reward=-0.0010
+Step 268 | Exposure=40000 | Reward=-0.0003
+Step 269 | Exposure=40000 | Reward=-0.0023
+Step 270 | Exposure=40000 | Reward=-0.0013
+Step 271 | Exposure=20000 | Reward=0.0052
+Step 272 | Exposure=40000 | Reward=-0.0068
+Step 273 | Exposure=20000 | Reward=0.0007
+Step 274 | Exposure=20000 | Reward=-0.0024
+Step 275 | Exposure=20000 | Reward=-0.0033
+Step 276 | Exposure=40000 | Reward=0.0032
+Step 277 | Exposure=20000 | Reward=0.0011
+Step 278 | Exposure=40000 | Reward=0.0006
+Step 279 | Exposure=30000 | Reward=-0.0001
+Step 280 | Exposure=20000 | Reward=-0.0009
+Step 281 | Exposure=40000 | Reward=0.0046
+Step 282 | Exposure=20000 | Reward=0.0012
+Step 283 | Exposure=40000 | Reward=0.0057
+Step 284 | Exposure=20000 | Reward=0.0003
+Step 285 | Exposure=40000 | Reward=-0.0035
+Step 286 | Exposure=20000 | Reward=0.0038
+Step 287 | Exposure=40000 | Reward=-0.0020
+Step 288 | Exposure=20000 | Reward=-0.0013
+Step 289 | Exposure=40000 | Reward=-0.0005
+Step 290 | Exposure=20000 | Reward=0.0028
+Step 291 | Exposure=40000 | Reward=-0.0047
+Step 292 | Exposure=20000 | Reward=-0.0042
+Step 293 | Exposure=40000 | Reward=-0.0014
+Step 294 | Exposure=40000 | Reward=-0.0033
+Step 295 | Exposure=20000 | Reward=-0.0042
+Step 296 | Exposure=40000 | Reward=0.0045
+Step 297 | Exposure=40000 | Reward=-0.0011
+Step 298 | Exposure=20000 | Reward=-0.0028
+Step 299 | Exposure=40000 | Reward=0.0035
+Step 300 | Exposure=20000 | Reward=-0.0014
+Q-table saved to q_table.pkl
+
+Training complete
+Learned states: 3
+Saved: q_table.pkl
+Saved: training_results.csv
+camera closed
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ ^C
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ ^C
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ ^C
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ 
+eongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 -c 'import pickle; q=pickle.load(open("q_table.pkl","rb")); print(q)'
+{(40, 4, 5): {0: 0.0009685076758012155, 1: 0.0003262716485569796, 2: -0.00019170120599417296}, (45, 4, 5): {0: -0.0007838675846757346, 1: -0.0008769590055269149, 2: -0.00139529044645026}, (35, 2, 5): {0: 9.998387804338984e-05, 1: 0.0008949386762900921, 2: 0.00175640337663439}}
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ 
+eongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_evaluation.py
+camera initialized
+image analyzer is initilaized
+Q-table loaded from /home/seongho/SURF_rl_camera_optimization/q_table.pkl
+=== Evaluation started ===
+Loaded states: 3
+Epsilon: 0.0
+Step 001 | Exposure=40000 | Before=0.8778 | After=0.8781 | Reward=-0.0029 | Seen=True
+Step 002 | Exposure=20000 | Before=0.8501 | After=0.8503 | Reward=-0.0017 | Seen=True
+Step 003 | Exposure=40000 | Before=0.8783 | After=0.8782 | Reward=0.0014 | Seen=True
+Step 004 | Exposure=20000 | Before=0.8503 | After=0.8504 | Reward=-0.0012 | Seen=True
+Step 005 | Exposure=40000 | Before=0.8778 | After=0.8781 | Reward=-0.0037 | Seen=False
+Step 006 | Exposure=20000 | Before=0.8503 | After=0.8506 | Reward=-0.0027 | Seen=True
+Step 007 | Exposure=40000 | Before=0.8782 | After=0.8782 | Reward=-0.0002 | Seen=True
+Step 008 | Exposure=20000 | Before=0.8507 | After=0.8506 | Reward=0.0011 | Seen=True
+Step 009 | Exposure=40000 | Before=0.8781 | After=0.8782 | Reward=-0.0012 | Seen=True
+Step 010 | Exposure=20000 | Before=0.8503 | After=0.8505 | Reward=-0.0020 | Seen=True
+Step 011 | Exposure=40000 | Before=0.8785 | After=0.8782 | Reward=0.0027 | Seen=True
+Step 012 | Exposure=20000 | Before=0.8503 | After=0.8501 | Reward=0.0021 | Seen=True
+Step 013 | Exposure=40000 | Before=0.8781 | After=0.8782 | Reward=-0.0013 | Seen=True
+Step 014 | Exposure=20000 | Before=0.8504 | After=0.8505 | Reward=-0.0014 | Seen=True
+Step 015 | Exposure=40000 | Before=0.8786 | After=0.8780 | Reward=0.0060 | Seen=True
+Step 016 | Exposure=20000 | Before=0.8504 | After=0.8504 | Reward=-0.0007 | Seen=True
+Step 017 | Exposure=40000 | Before=0.8781 | After=0.8783 | Reward=-0.0022 | Seen=True
+Step 018 | Exposure=20000 | Before=0.8506 | After=0.8507 | Reward=-0.0010 | Seen=True
+Step 019 | Exposure=40000 | Before=0.8777 | After=0.8782 | Reward=-0.0052 | Seen=True
+Step 020 | Exposure=20000 | Before=0.8501 | After=0.8495 | Reward=0.0055 | Seen=True
+Step 021 | Exposure=40000 | Before=0.8778 | After=0.8776 | Reward=0.0016 | Seen=True
+Step 022 | Exposure=20000 | Before=0.8501 | After=0.8496 | Reward=0.0048 | Seen=True
+Step 023 | Exposure=40000 | Before=0.8781 | After=0.8782 | Reward=-0.0007 | Seen=True
+Step 024 | Exposure=20000 | Before=0.8496 | After=0.8502 | Reward=-0.0056 | Seen=True
+Step 025 | Exposure=20000 | Before=0.8775 | After=0.8782 | Reward=-0.0077 | Seen=False
+Step 026 | Exposure=40000 | Before=0.8778 | After=0.8779 | Reward=-0.0001 | Seen=True
+Step 027 | Exposure=20000 | Before=0.8501 | After=0.8499 | Reward=0.0022 | Seen=True
+Step 028 | Exposure=40000 | Before=0.8778 | After=0.8774 | Reward=0.0043 | Seen=True
+Step 029 | Exposure=20000 | Before=0.8498 | After=0.8501 | Reward=-0.0021 | Seen=True
+Step 030 | Exposure=40000 | Before=0.8779 | After=0.8769 | Reward=0.0100 | Seen=True
+
+=== Evaluation Summary ===
+Mean after proxy: 0.8651
+Std after proxy: 0.0139
+Mean reward: -0.0001
+Known states: 28/30
+Saved: /home/seongho/SURF_rl_camera_optimization/evaluation_results.csv
+camera closed
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ 
+
+
+
+
+
+
+
+
+/// camera image store
+
+
+
+
+seongho@seongho-desktop:~$         print("❌ Incomplete:", image.GetImageStatus())^C
+seongho@seongho-desktop:~$ cd SURF_rl_camera_optimization/
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_baseline.py
+camera initialized
+image analyzer is initilaized
+
+=== Exposure: 20000 us ===
+01 | B=40.28 C=3.23 S=6.80 Proxy=0.8769
+02 | B=40.44 C=3.22 S=6.82 Proxy=0.8764
+03 | B=40.38 C=3.23 S=6.81 Proxy=0.8766
+04 | B=40.38 C=3.24 S=6.81 Proxy=0.8766
+05 | B=40.41 C=3.23 S=6.79 Proxy=0.8765
+06 | B=40.59 C=3.24 S=6.80 Proxy=0.8760
+07 | B=40.52 C=3.24 S=6.80 Proxy=0.8762
+08 | B=40.51 C=3.23 S=6.81 Proxy=0.8762
+09 | B=40.55 C=3.23 S=6.82 Proxy=0.8761
+10 | B=40.42 C=3.23 S=6.82 Proxy=0.8765
+
+=== Exposure: 30000 us ===
+01 | B=44.26 C=4.44 S=6.77 Proxy=0.8612
+02 | B=43.95 C=4.47 S=6.89 Proxy=0.8619
+03 | B=44.21 C=4.45 S=6.80 Proxy=0.8613
+04 | B=44.10 C=4.45 S=6.83 Proxy=0.8616
+05 | B=44.16 C=4.46 S=6.82 Proxy=0.8614
+06 | B=44.06 C=4.46 S=6.84 Proxy=0.8617
+07 | B=44.08 C=4.45 S=6.85 Proxy=0.8616
+08 | B=44.04 C=4.47 S=6.84 Proxy=0.8616
+09 | B=44.10 C=4.45 S=6.84 Proxy=0.8616
+10 | B=44.01 C=4.47 S=6.85 Proxy=0.8617
+
+=== Exposure: 40000 us ===
+01 | B=47.16 C=5.60 S=6.87 Proxy=0.8486
+02 | B=47.34 C=5.59 S=6.86 Proxy=0.8482
+03 | B=47.34 C=5.59 S=6.88 Proxy=0.8482
+04 | B=47.37 C=5.57 S=6.87 Proxy=0.8482
+05 | B=47.23 C=5.59 S=6.87 Proxy=0.8485
+06 | B=47.33 C=5.58 S=6.87 Proxy=0.8483
+07 | B=47.19 C=5.59 S=6.85 Proxy=0.8486
+08 | B=47.21 C=5.59 S=6.85 Proxy=0.8485
+09 | B=47.23 C=5.58 S=6.86 Proxy=0.8485
+10 | B=47.27 C=5.58 S=6.86 Proxy=0.8484
+
+=== SUMMARY ===
+
+Exposure 20000 us
+brightness: mean=40.4471, std=0.0900
+contrast: mean=3.2321, std=0.0067
+sharpness: mean=6.8083, std=0.0093
+proxy: mean=0.8764, std=0.0003
+
+Exposure 30000 us
+brightness: mean=44.0982, std=0.0884
+contrast: mean=4.4571, std=0.0125
+sharpness: mean=6.8332, std=0.0297
+proxy: mean=0.8616, std=0.0002
+
+Exposure 40000 us
+brightness: mean=47.2665, std=0.0700
+contrast: mean=5.5849, std=0.0086
+sharpness: mean=6.8643, std=0.0085
+proxy: mean=0.8484, std=0.0002
+
+Saved: baseline_results.csv
+camera closed
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ find experiment_data -type f | sort | head -40
+find: ‘experiment_data’: No such file or directory
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ find experiment_data -type f | sort | head -40^C
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_baseline.py
+camera initialized
+image analyzer is initilaized
+
+=== Exposure: 20000 us ===
+01 | B=40.57 C=3.24 S=6.81 Proxy=0.8760
+02 | B=40.49 C=3.24 S=6.81 Proxy=0.8763
+03 | B=40.69 C=3.24 S=6.81 Proxy=0.8757
+04 | B=40.47 C=3.24 S=6.82 Proxy=0.8763
+05 | B=40.45 C=3.22 S=6.83 Proxy=0.8764
+06 | B=40.54 C=3.23 S=6.83 Proxy=0.8762
+07 | B=40.66 C=3.23 S=6.82 Proxy=0.8758
+08 | B=40.65 C=3.22 S=6.83 Proxy=0.8759
+09 | B=40.68 C=3.23 S=6.81 Proxy=0.8758
+10 | B=40.63 C=3.23 S=6.80 Proxy=0.8759
+
+=== Exposure: 30000 us ===
+01 | B=44.14 C=4.43 S=6.82 Proxy=0.8616
+02 | B=44.17 C=4.44 S=6.80 Proxy=0.8615
+03 | B=44.23 C=4.40 S=6.77 Proxy=0.8614
+04 | B=44.16 C=4.45 S=6.80 Proxy=0.8615
+05 | B=44.20 C=4.42 S=6.79 Proxy=0.8614
+06 | B=44.27 C=4.41 S=6.77 Proxy=0.8613
+07 | B=44.20 C=4.43 S=6.79 Proxy=0.8614
+08 | B=44.09 C=4.44 S=6.83 Proxy=0.8616
+09 | B=44.17 C=4.44 S=6.79 Proxy=0.8614
+10 | B=44.07 C=4.44 S=6.82 Proxy=0.8617
+
+=== Exposure: 40000 us ===
+01 | B=47.37 C=5.54 S=6.86 Proxy=0.8483
+02 | B=47.31 C=5.56 S=6.84 Proxy=0.8484
+03 | B=47.21 C=5.57 S=6.84 Proxy=0.8486
+04 | B=47.25 C=5.55 S=6.86 Proxy=0.8486
+05 | B=47.11 C=5.58 S=6.85 Proxy=0.8488
+06 | B=47.22 C=5.55 S=6.85 Proxy=0.8487
+07 | B=47.21 C=5.56 S=6.85 Proxy=0.8486
+08 | B=47.26 C=5.57 S=6.85 Proxy=0.8485
+09 | B=47.30 C=5.58 S=6.85 Proxy=0.8483
+10 | B=47.27 C=5.57 S=6.86 Proxy=0.8484
+
+=== SUMMARY ===
+
+Exposure 20000 us
+brightness: mean=40.5825, std=0.0867
+contrast: mean=3.2331, std=0.0070
+sharpness: mean=6.8179, std=0.0095
+proxy: mean=0.8760, std=0.0002
+
+Exposure 30000 us
+brightness: mean=44.1703, std=0.0593
+contrast: mean=4.4305, std=0.0124
+sharpness: mean=6.7973, std=0.0179
+proxy: mean=0.8615, std=0.0001
+
+Exposure 40000 us
+brightness: mean=47.2517, std=0.0667
+contrast: mean=5.5641, std=0.0119
+sharpness: mean=6.8514, std=0.0064
+proxy: mean=0.8485, std=0.0002
+
+Saved: baseline_results.csv
+camera closed
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ find experiment_data -type f | sort | head -40
+experiment_data/baseline/20000/image_001.png
+experiment_data/baseline/20000/image_002.png
+experiment_data/baseline/20000/image_003.png
+experiment_data/baseline/20000/image_004.png
+experiment_data/baseline/20000/image_005.png
+experiment_data/baseline/20000/image_006.png
+experiment_data/baseline/20000/image_007.png
+experiment_data/baseline/20000/image_008.png
+experiment_data/baseline/20000/image_009.png
+experiment_data/baseline/20000/image_010.png
+experiment_data/baseline/30000/image_001.png
+experiment_data/baseline/30000/image_002.png
+experiment_data/baseline/30000/image_003.png
+experiment_data/baseline/30000/image_004.png
+experiment_data/baseline/30000/image_005.png
+experiment_data/baseline/30000/image_006.png
+experiment_data/baseline/30000/image_007.png
+experiment_data/baseline/30000/image_008.png
+experiment_data/baseline/30000/image_009.png
+experiment_data/baseline/30000/image_010.png
+experiment_data/baseline/40000/image_001.png
+experiment_data/baseline/40000/image_002.png
+experiment_data/baseline/40000/image_003.png
+experiment_data/baseline/40000/image_004.png
+experiment_data/baseline/40000/image_005.png
+experiment_data/baseline/40000/image_006.png
+experiment_data/baseline/40000/image_007.png
+experiment_data/baseline/40000/image_008.png
+experiment_data/baseline/40000/image_009.png
+experiment_data/baseline/40000/image_010.png
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_training.py
+  File "/home/seongho/SURF_rl_camera_optimization/project/run_training.py", line 40
+    os.path.join(IMAGE_DIR, f""step_{step:03d}_before.png"},
+                                          ^
+SyntaxError: leading zeros in decimal integer literals are not permitted; use an 0o prefix for octal integers
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_training.py
+  File "/home/seongho/SURF_rl_camera_optimization/project/run_training.py", line 40
+    os.path.join(IMAGE_DIR, f"step_{step:03d}_before.png"},
+                                                         ^
+SyntaxError: closing parenthesis '}' does not match opening parenthesis '('
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_training.py
+  File "/home/seongho/SURF_rl_camera_optimization/project/run_training.py", line 40
+    os.path.join(IMAGE_DIR, f"step_{step:03d}_before.png"},
+                                                         ^
+SyntaxError: closing parenthesis '}' does not match opening parenthesis '('
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_training.py
+camera initialized
+image analyzer is initilaized
+Step 001 | Exposure=20000 | Reward=0.0026
+Step 002 | Exposure=20000 | Reward=0.0016
+Step 003 | Exposure=20000 | Reward=0.0023
+Step 004 | Exposure=20000 | Reward=-0.0020
+Step 005 | Exposure=20000 | Reward=-0.0017
+Step 006 | Exposure=20000 | Reward=-0.0011
+Step 007 | Exposure=30000 | Reward=-0.0080
+Step 008 | Exposure=30000 | Reward=-0.0031
+Step 009 | Exposure=40000 | Reward=-0.0046
+Step 010 | Exposure=30000 | Reward=-0.0053
+Step 011 | Exposure=20000 | Reward=-0.0026
+Step 012 | Exposure=40000 | Reward=0.0043
+Step 013 | Exposure=20000 | Reward=-0.0000
+Step 014 | Exposure=20000 | Reward=0.0018
+Step 015 | Exposure=40000 | Reward=0.0047
+Step 016 | Exposure=20000 | Reward=-0.0028
+Step 017 | Exposure=40000 | Reward=-0.0029
+Step 018 | Exposure=30000 | Reward=-0.0033
+Step 019 | Exposure=20000 | Reward=0.0005
+Step 020 | Exposure=20000 | Reward=0.0059
+Step 021 | Exposure=20000 | Reward=-0.0039
+Step 022 | Exposure=40000 | Reward=-0.0011
+Step 023 | Exposure=30000 | Reward=-0.0003
+Step 024 | Exposure=20000 | Reward=0.0012
+Step 025 | Exposure=40000 | Reward=0.0019
+Step 026 | Exposure=40000 | Reward=0.0017
+Step 027 | Exposure=20000 | Reward=-0.0018
+Step 028 | Exposure=40000 | Reward=-0.0001
+Step 029 | Exposure=40000 | Reward=0.0058
+Step 030 | Exposure=40000 | Reward=0.0028
+Step 031 | Exposure=40000 | Reward=0.0014
+Step 032 | Exposure=40000 | Reward=0.0007
+Step 033 | Exposure=40000 | Reward=0.0005
+Step 034 | Exposure=30000 | Reward=0.0021
+Step 035 | Exposure=40000 | Reward=-0.0025
+Step 036 | Exposure=40000 | Reward=0.0020
+Step 037 | Exposure=40000 | Reward=-0.0018
+Step 038 | Exposure=40000 | Reward=-0.0013
+Step 039 | Exposure=40000 | Reward=-0.0025
+Step 040 | Exposure=40000 | Reward=-0.0016
+Step 041 | Exposure=40000 | Reward=-0.0018
+Step 042 | Exposure=40000 | Reward=-0.0009
+Step 043 | Exposure=40000 | Reward=-0.0044
+Step 044 | Exposure=40000 | Reward=0.0028
+Step 045 | Exposure=40000 | Reward=0.0014
+Step 046 | Exposure=40000 | Reward=0.0048
+Step 047 | Exposure=40000 | Reward=0.0002
+Step 048 | Exposure=30000 | Reward=0.0029
+Step 049 | Exposure=30000 | Reward=-0.0010
+Step 050 | Exposure=30000 | Reward=-0.0014
+Step 051 | Exposure=20000 | Reward=-0.0012
+Step 052 | Exposure=40000 | Reward=-0.0070
+Step 053 | Exposure=40000 | Reward=0.0059
+Step 054 | Exposure=40000 | Reward=-0.0025
+Step 055 | Exposure=40000 | Reward=-0.0026
+Step 056 | Exposure=30000 | Reward=0.0012
+Step 057 | Exposure=30000 | Reward=0.0064
+Step 058 | Exposure=30000 | Reward=0.0035
+Step 059 | Exposure=30000 | Reward=0.0033
+Step 060 | Exposure=30000 | Reward=-0.0028
+Step 061 | Exposure=20000 | Reward=0.0002
+Step 062 | Exposure=20000 | Reward=-0.0009
+Step 063 | Exposure=40000 | Reward=-0.0023
+Step 064 | Exposure=20000 | Reward=0.0051
+Step 065 | Exposure=20000 | Reward=-0.0041
+Step 066 | Exposure=40000 | Reward=0.0007
+Step 067 | Exposure=40000 | Reward=0.0011
+Step 068 | Exposure=40000 | Reward=-0.0043
+Step 069 | Exposure=40000 | Reward=0.0017
+Step 070 | Exposure=40000 | Reward=0.0021
+Step 071 | Exposure=40000 | Reward=-0.0048
+Step 072 | Exposure=30000 | Reward=0.0015
+Step 073 | Exposure=30000 | Reward=-0.0009
+Step 074 | Exposure=30000 | Reward=-0.0005
+Step 075 | Exposure=30000 | Reward=0.0002
+Step 076 | Exposure=20000 | Reward=0.0051
+Step 077 | Exposure=20000 | Reward=-0.0035
+Step 078 | Exposure=30000 | Reward=0.0023
+Step 079 | Exposure=20000 | Reward=-0.0033
+Step 080 | Exposure=40000 | Reward=0.0031
+Step 081 | Exposure=40000 | Reward=-0.0017
+Step 082 | Exposure=20000 | Reward=0.0002
+Step 083 | Exposure=40000 | Reward=0.0001
+Step 084 | Exposure=30000 | Reward=0.0019
+Step 085 | Exposure=30000 | Reward=0.0008
+Step 086 | Exposure=30000 | Reward=-0.0024
+Step 087 | Exposure=30000 | Reward=-0.0054
+Step 088 | Exposure=20000 | Reward=0.0064
+Step 089 | Exposure=30000 | Reward=-0.0024
+Step 090 | Exposure=20000 | Reward=-0.0031
+Step 091 | Exposure=40000 | Reward=-0.0024
+Step 092 | Exposure=30000 | Reward=-0.0020
+Step 093 | Exposure=20000 | Reward=0.0010
+Step 094 | Exposure=40000 | Reward=-0.0033
+Step 095 | Exposure=20000 | Reward=0.0049
+Step 096 | Exposure=40000 | Reward=-0.0010
+Step 097 | Exposure=20000 | Reward=0.0034
+Step 098 | Exposure=20000 | Reward=-0.0035
+Step 099 | Exposure=40000 | Reward=-0.0035
+Step 100 | Exposure=20000 | Reward=-0.0004
+Step 101 | Exposure=40000 | Reward=0.0041
+Step 102 | Exposure=20000 | Reward=0.0049
+Step 103 | Exposure=40000 | Reward=-0.0073
+Step 104 | Exposure=40000 | Reward=0.0026
+Step 105 | Exposure=20000 | Reward=0.0044
+Step 106 | Exposure=30000 | Reward=-0.0027
+Step 107 | Exposure=20000 | Reward=0.0011
+Step 108 | Exposure=20000 | Reward=0.0082
+Step 109 | Exposure=40000 | Reward=-0.0042
+Step 110 | Exposure=20000 | Reward=0.0014
+Step 111 | Exposure=20000 | Reward=-0.0031
+Step 112 | Exposure=20000 | Reward=0.0060
+Step 113 | Exposure=20000 | Reward=0.0004
+Step 114 | Exposure=20000 | Reward=-0.0005
+Step 115 | Exposure=30000 | Reward=0.0004
+Step 116 | Exposure=40000 | Reward=-0.0005
+Step 117 | Exposure=20000 | Reward=-0.0002
+Step 118 | Exposure=20000 | Reward=0.0070
+Step 119 | Exposure=20000 | Reward=-0.0029
+Step 120 | Exposure=20000 | Reward=-0.0010
+Step 121 | Exposure=20000 | Reward=-0.0011
+Step 122 | Exposure=20000 | Reward=0.0016
+Step 123 | Exposure=20000 | Reward=0.0016
+Step 124 | Exposure=20000 | Reward=0.0018
+Step 125 | Exposure=30000 | Reward=0.0011
+Step 126 | Exposure=40000 | Reward=-0.0037
+Step 127 | Exposure=20000 | Reward=0.0016
+Step 128 | Exposure=20000 | Reward=-0.0029
+Step 129 | Exposure=20000 | Reward=-0.0029
+Step 130 | Exposure=20000 | Reward=-0.0027
+Step 131 | Exposure=20000 | Reward=-0.0032
+Step 132 | Exposure=20000 | Reward=-0.0033
+Step 133 | Exposure=30000 | Reward=-0.0024
+Step 134 | Exposure=20000 | Reward=0.0031
+Step 135 | Exposure=20000 | Reward=-0.0008
+Step 136 | Exposure=20000 | Reward=0.0005
+Step 137 | Exposure=40000 | Reward=-0.0007
+Step 138 | Exposure=20000 | Reward=0.0027
+Step 139 | Exposure=20000 | Reward=-0.0007
+Step 140 | Exposure=20000 | Reward=0.0002
+Step 141 | Exposure=20000 | Reward=0.0020
+Step 142 | Exposure=20000 | Reward=-0.0044
+Step 143 | Exposure=30000 | Reward=0.0020
+Step 144 | Exposure=20000 | Reward=0.0013
+Step 145 | Exposure=30000 | Reward=0.0032
+Step 146 | Exposure=20000 | Reward=0.0024
+Step 147 | Exposure=30000 | Reward=-0.0058
+Step 148 | Exposure=20000 | Reward=-0.0025
+Step 149 | Exposure=30000 | Reward=0.0036
+Step 150 | Exposure=20000 | Reward=-0.0014
+Step 151 | Exposure=30000 | Reward=-0.0083
+Step 152 | Exposure=20000 | Reward=-0.0002
+Step 153 | Exposure=20000 | Reward=-0.0014
+Step 154 | Exposure=20000 | Reward=0.0047
+Step 155 | Exposure=20000 | Reward=0.0015
+Step 156 | Exposure=20000 | Reward=-0.0010
+Step 157 | Exposure=20000 | Reward=-0.0024
+Step 158 | Exposure=20000 | Reward=-0.0038
+Step 159 | Exposure=20000 | Reward=-0.0020
+Step 160 | Exposure=20000 | Reward=-0.0014
+Step 161 | Exposure=30000 | Reward=0.0010
+Step 162 | Exposure=20000 | Reward=0.0017
+Step 163 | Exposure=30000 | Reward=0.0025
+Step 164 | Exposure=20000 | Reward=0.0024
+Step 165 | Exposure=40000 | Reward=-0.0059
+Step 166 | Exposure=20000 | Reward=-0.0014
+Step 167 | Exposure=30000 | Reward=-0.0035
+Step 168 | Exposure=20000 | Reward=0.0033
+Step 169 | Exposure=30000 | Reward=-0.0052
+Step 170 | Exposure=20000 | Reward=0.0022
+Step 171 | Exposure=20000 | Reward=0.0053
+Step 172 | Exposure=20000 | Reward=0.0045
+Step 173 | Exposure=20000 | Reward=-0.0012
+Step 174 | Exposure=20000 | Reward=-0.0002
+Step 175 | Exposure=20000 | Reward=0.0018
+Step 176 | Exposure=20000 | Reward=-0.0024
+Step 177 | Exposure=20000 | Reward=0.0013
+Step 178 | Exposure=20000 | Reward=-0.0067
+Step 179 | Exposure=20000 | Reward=-0.0016
+Step 180 | Exposure=20000 | Reward=0.0027
+Step 181 | Exposure=20000 | Reward=-0.0041
+Step 182 | Exposure=30000 | Reward=0.0042
+Step 183 | Exposure=20000 | Reward=0.0005
+Step 184 | Exposure=30000 | Reward=0.0038
+Step 185 | Exposure=30000 | Reward=-0.0003
+Step 186 | Exposure=30000 | Reward=-0.0012
+Step 187 | Exposure=20000 | Reward=-0.0008
+Step 188 | Exposure=30000 | Reward=-0.0045
+Step 189 | Exposure=20000 | Reward=-0.0033
+Step 190 | Exposure=30000 | Reward=-0.0027
+Step 191 | Exposure=20000 | Reward=0.0017
+Step 192 | Exposure=20000 | Reward=0.0012
+Step 193 | Exposure=20000 | Reward=-0.0060
+Step 194 | Exposure=20000 | Reward=0.0013
+Step 195 | Exposure=30000 | Reward=-0.0028
+Step 196 | Exposure=20000 | Reward=0.0024
+Step 197 | Exposure=20000 | Reward=0.0018
+Step 198 | Exposure=20000 | Reward=0.0053
+Step 199 | Exposure=20000 | Reward=0.0017
+Step 200 | Exposure=20000 | Reward=0.0037
+Step 201 | Exposure=20000 | Reward=0.0053
+Step 202 | Exposure=20000 | Reward=-0.0027
+Step 203 | Exposure=20000 | Reward=-0.0004
+Step 204 | Exposure=20000 | Reward=0.0016
+Step 205 | Exposure=20000 | Reward=0.0016
+Step 206 | Exposure=20000 | Reward=0.0040
+Step 207 | Exposure=20000 | Reward=-0.0038
+Step 208 | Exposure=40000 | Reward=-0.0018
+Step 209 | Exposure=20000 | Reward=-0.0012
+Step 210 | Exposure=20000 | Reward=-0.0065
+Step 211 | Exposure=20000 | Reward=0.0016
+Step 212 | Exposure=20000 | Reward=0.0022
+Step 213 | Exposure=20000 | Reward=-0.0008
+Step 214 | Exposure=20000 | Reward=-0.0017
+Step 215 | Exposure=20000 | Reward=0.0058
+Step 216 | Exposure=20000 | Reward=-0.0030
+Step 217 | Exposure=20000 | Reward=0.0046
+Step 218 | Exposure=20000 | Reward=-0.0005
+Step 219 | Exposure=20000 | Reward=-0.0031
+Step 220 | Exposure=20000 | Reward=-0.0014
+Step 221 | Exposure=20000 | Reward=-0.0051
+Step 222 | Exposure=20000 | Reward=0.0021
+Step 223 | Exposure=40000 | Reward=-0.0014
+Step 224 | Exposure=20000 | Reward=0.0014
+Step 225 | Exposure=30000 | Reward=0.0013
+Step 226 | Exposure=20000 | Reward=-0.0026
+Step 227 | Exposure=40000 | Reward=-0.0017
+Step 228 | Exposure=20000 | Reward=0.0026
+Step 229 | Exposure=20000 | Reward=-0.0012
+Step 230 | Exposure=20000 | Reward=0.0012
+Step 231 | Exposure=40000 | Reward=-0.0000
+Step 232 | Exposure=20000 | Reward=0.0037
+Step 233 | Exposure=20000 | Reward=-0.0047
+Step 234 | Exposure=20000 | Reward=-0.0035
+Step 235 | Exposure=20000 | Reward=0.0003
+Step 236 | Exposure=20000 | Reward=0.0005
+Step 237 | Exposure=20000 | Reward=0.0043
+Step 238 | Exposure=20000 | Reward=0.0006
+Step 239 | Exposure=20000 | Reward=-0.0072
+Step 240 | Exposure=40000 | Reward=-0.0072
+Step 241 | Exposure=40000 | Reward=-0.0051
+Step 242 | Exposure=20000 | Reward=-0.0034
+Step 243 | Exposure=40000 | Reward=0.0071
+Step 244 | Exposure=20000 | Reward=0.0002
+Step 245 | Exposure=20000 | Reward=0.0015
+Step 246 | Exposure=40000 | Reward=-0.0028
+Step 247 | Exposure=20000 | Reward=-0.0026
+Step 248 | Exposure=20000 | Reward=-0.0024
+Step 249 | Exposure=20000 | Reward=-0.0012
+Step 250 | Exposure=40000 | Reward=0.0004
+Step 251 | Exposure=20000 | Reward=0.0040
+Step 252 | Exposure=20000 | Reward=-0.0025
+Step 253 | Exposure=30000 | Reward=-0.0017
+Step 254 | Exposure=20000 | Reward=-0.0030
+Step 255 | Exposure=20000 | Reward=-0.0053
+Step 256 | Exposure=30000 | Reward=0.0067
+Step 257 | Exposure=20000 | Reward=-0.0034
+Step 258 | Exposure=30000 | Reward=-0.0054
+Step 259 | Exposure=20000 | Reward=-0.0036
+Step 260 | Exposure=30000 | Reward=-0.0057
+Step 261 | Exposure=20000 | Reward=0.0021
+Step 262 | Exposure=40000 | Reward=0.0036
+Step 263 | Exposure=20000 | Reward=-0.0014
+Step 264 | Exposure=20000 | Reward=-0.0046
+Step 265 | Exposure=40000 | Reward=0.0015
+Step 266 | Exposure=40000 | Reward=0.0007
+Step 267 | Exposure=20000 | Reward=0.0014
+Step 268 | Exposure=40000 | Reward=-0.0025
+Step 269 | Exposure=20000 | Reward=0.0035
+Step 270 | Exposure=20000 | Reward=-0.0021
+Step 271 | Exposure=40000 | Reward=-0.0009
+Step 272 | Exposure=20000 | Reward=-0.0024
+Step 273 | Exposure=40000 | Reward=0.0017
+Step 274 | Exposure=20000 | Reward=0.0050
+Step 275 | Exposure=40000 | Reward=-0.0025
+Step 276 | Exposure=20000 | Reward=-0.0022
+Step 277 | Exposure=40000 | Reward=0.0058
+Step 278 | Exposure=20000 | Reward=-0.0049
+Step 279 | Exposure=40000 | Reward=0.0004
+Step 280 | Exposure=40000 | Reward=0.0052
+Step 281 | Exposure=20000 | Reward=0.0025
+Step 282 | Exposure=40000 | Reward=0.0021
+Step 283 | Exposure=40000 | Reward=0.0025
+Step 284 | Exposure=20000 | Reward=0.0004
+Step 285 | Exposure=40000 | Reward=0.0021
+Step 286 | Exposure=20000 | Reward=-0.0004
+Step 287 | Exposure=40000 | Reward=-0.0003
+Step 288 | Exposure=20000 | Reward=0.0023
+Step 289 | Exposure=40000 | Reward=0.0055
+Step 290 | Exposure=20000 | Reward=0.0011
+Step 291 | Exposure=40000 | Reward=0.0023
+Step 292 | Exposure=20000 | Reward=0.0011
+Step 293 | Exposure=40000 | Reward=0.0001
+Step 294 | Exposure=20000 | Reward=-0.0007
+Step 295 | Exposure=40000 | Reward=-0.0025
+Step 296 | Exposure=20000 | Reward=0.0020
+Step 297 | Exposure=20000 | Reward=0.0027
+Step 298 | Exposure=20000 | Reward=0.0028
+Step 299 | Exposure=40000 | Reward=0.0020
+Step 300 | Exposure=20000 | Reward=0.0033
+Q-table saved to q_table.pkl
+
+Training complete
+Learned states: 3
+Saved: q_table.pkl
+Saved: training_results.csv
+camera closed
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_evaluation.py
+camera initialized
+image analyzer is initilaized
+Q-table loaded from /home/seongho/SURF_rl_camera_optimization/q_table.pkl
+=== Evaluation started ===
+Loaded states: 3
+Epsilon: 0.0
+camera closed
+Traceback (most recent call last):
+  File "/home/seongho/SURF_rl_camera_optimization/project/run_evaluation.py", line 175, in <module>
+    main()
+  File "/home/seongho/SURF_rl_camera_optimization/project/run_evaluation.py", line 49, in main
+    step = rseult["step"]
+NameError: name 'rseult' is not defined. Did you mean: 'result'?
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_evaluation.py
+camera initialized
+image analyzer is initilaized
+Q-table loaded from /home/seongho/SURF_rl_camera_optimization/q_table.pkl
+=== Evaluation started ===
+Loaded states: 3
+Epsilon: 0.0
+camera closed
+Traceback (most recent call last):
+  File "/home/seongho/SURF_rl_camera_optimization/project/run_evaluation.py", line 175, in <module>
+    main()
+  File "/home/seongho/SURF_rl_camera_optimization/project/run_evaluation.py", line 51, in main
+    cv2.imwrite(
+NameError: name 'cv2' is not defined
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_evaluation.py
+camera initialized
+image analyzer is initilaized
+Q-table loaded from /home/seongho/SURF_rl_camera_optimization/q_table.pkl
+=== Evaluation started ===
+Loaded states: 3
+Epsilon: 0.0
+Step 001 | Exposure=40000 | Before=0.8762 | After=0.8760 | Reward=0.0021 | Seen=True
+Step 002 | Exposure=20000 | Before=0.8486 | After=0.8484 | Reward=0.0019 | Seen=True
+Step 003 | Exposure=40000 | Before=0.8762 | After=0.8758 | Reward=0.0046 | Seen=True
+Step 004 | Exposure=20000 | Before=0.8483 | After=0.8491 | Reward=-0.0080 | Seen=True
+Step 005 | Exposure=40000 | Before=0.8768 | After=0.8759 | Reward=0.0095 | Seen=True
+Step 006 | Exposure=20000 | Before=0.8478 | After=0.8478 | Reward=0.0001 | Seen=True
+Step 007 | Exposure=40000 | Before=0.8754 | After=0.8755 | Reward=-0.0008 | Seen=True
+Step 008 | Exposure=20000 | Before=0.8479 | After=0.8474 | Reward=0.0050 | Seen=True
+Step 009 | Exposure=40000 | Before=0.8762 | After=0.8762 | Reward=0.0002 | Seen=True
+Step 010 | Exposure=20000 | Before=0.8482 | After=0.8475 | Reward=0.0077 | Seen=True
+Step 011 | Exposure=40000 | Before=0.8761 | After=0.8756 | Reward=0.0044 | Seen=True
+Step 012 | Exposure=20000 | Before=0.8481 | After=0.8477 | Reward=0.0037 | Seen=True
+Step 013 | Exposure=40000 | Before=0.8762 | After=0.8752 | Reward=0.0095 | Seen=True
+Step 014 | Exposure=20000 | Before=0.8478 | After=0.8479 | Reward=-0.0005 | Seen=True
+Step 015 | Exposure=40000 | Before=0.8763 | After=0.8760 | Reward=0.0031 | Seen=True
+Step 016 | Exposure=20000 | Before=0.8478 | After=0.8481 | Reward=-0.0032 | Seen=True
+Step 017 | Exposure=40000 | Before=0.8761 | After=0.8757 | Reward=0.0033 | Seen=True
+Step 018 | Exposure=20000 | Before=0.8479 | After=0.8479 | Reward=0.0004 | Seen=True
+Step 019 | Exposure=40000 | Before=0.8758 | After=0.8756 | Reward=0.0025 | Seen=True
+Step 020 | Exposure=20000 | Before=0.8481 | After=0.8479 | Reward=0.0029 | Seen=True
+Step 021 | Exposure=40000 | Before=0.8756 | After=0.8758 | Reward=-0.0020 | Seen=True
+Step 022 | Exposure=20000 | Before=0.8479 | After=0.8476 | Reward=0.0039 | Seen=True
+Step 023 | Exposure=40000 | Before=0.8761 | After=0.8758 | Reward=0.0037 | Seen=True
+Step 024 | Exposure=20000 | Before=0.8480 | After=0.8478 | Reward=0.0023 | Seen=True
+Step 025 | Exposure=40000 | Before=0.8757 | After=0.8756 | Reward=0.0008 | Seen=True
+Step 026 | Exposure=20000 | Before=0.8478 | After=0.8481 | Reward=-0.0034 | Seen=True
+Step 027 | Exposure=40000 | Before=0.8756 | After=0.8760 | Reward=-0.0049 | Seen=True
+Step 028 | Exposure=20000 | Before=0.8476 | After=0.8476 | Reward=-0.0001 | Seen=True
+Step 029 | Exposure=40000 | Before=0.8755 | After=0.8759 | Reward=-0.0040 | Seen=True
+Step 030 | Exposure=20000 | Before=0.8478 | After=0.8476 | Reward=0.0018 | Seen=True
+
+=== Evaluation Summary ===
+Mean after proxy: 0.8618
+Std after proxy: 0.014
+Mean reward: 0.0016
+Known states: 30/30
+Saved: /home/seongho/SURF_rl_camera_optimization/evaluation_results.csv
+camera closed
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ 
+
+

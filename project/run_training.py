@@ -1,6 +1,7 @@
 import os
 import sys
 import csv
+import cv2
 
 ROOT = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..")
@@ -12,10 +13,13 @@ if ROOT not in sys.path:
 from environment.camera_environment import CameraEnvironment
 
 
-STEPS = 50
+STEPS = 300
 CSV_FILE = "training_results.csv"
 Q_TABLE_FILE = "q_table.pkl"
 
+
+IMAGE_DIR = "experiment_data/training"
+os.makedirs(IMAGE_DIR, exist_ok=True)
 
 def main():
     env = CameraEnvironment()
@@ -25,9 +29,22 @@ def main():
         for _ in range(STEPS):
             result = env.step(training=True)
 
+
             if "error" in result:
                 print(result)
                 continue
+                
+            step = result["step"]
+            
+            cv2.imwrite(
+            os.path.join(IMAGE_DIR, f"step_{step:03d}_before.png"),
+            result["image_before"]
+            )
+            
+            cv2.imwrite(
+            os.path.join(IMAGE_DIR, f"step_{step:03d}_after.png"),
+            result["image_after"]
+            )
 
             row = {
                 "step": result["step"],

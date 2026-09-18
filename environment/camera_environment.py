@@ -75,6 +75,9 @@ class CameraEnvironment:
             "action": action,
             "features_before": features,
             "features_after": features2,
+            
+            "image_before": image, 
+            "image_after": image2,
         }
 
     def _calculate_reward(self, before, after):

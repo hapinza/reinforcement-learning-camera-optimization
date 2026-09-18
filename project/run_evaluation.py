@@ -2,6 +2,8 @@ import os
 import sys
 import csv
 import numpy as np
+import cv2
+
 
 ROOT = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..")
@@ -17,6 +19,10 @@ STEPS = 30
 
 Q_TABLE_FILE = os.path.join(ROOT, "q_table.pkl")
 CSV_FILE = os.path.join(ROOT, "evaluation_results.csv")
+
+IMAGE_DIR = os.path.join(ROOT, "experiment_data", "evaluation")
+os.makedirs(IMAGE_DIR, exist_ok=True)
+
 
 
 def main():
@@ -41,6 +47,20 @@ def main():
             if "error" in result:
                 print(result)
                 continue
+                
+            step = result["step"]
+            
+            cv2.imwrite(
+            os.path.join(IMAGE_DIR, f"step_{step:03d}_before.png"),
+            result["image_before"]
+            )
+            
+            cv2.imwrite(
+            os.path.join(IMAGE_DIR, f"step_{step:03d}_after.png"),
+            result["image_after"]
+            )
+            
+                
 
             state_key = env.agent.state_to_key(
                 result["features_before"]
