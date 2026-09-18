@@ -10,8 +10,6 @@ class CameraEnvironment:
         self.analyzer = ImageAnalyzer()
 
         self.actions = [
-            {"exposure": 5000},
-            {"exposure": 10000},
             {"exposure": 20000},
             {"exposure": 30000},
             {"exposure": 40000},
@@ -20,7 +18,7 @@ class CameraEnvironment:
         self.agent = RLAgent(self.actions)
         self.step_count = 0
 
-    def step(self):
+    def step(self, training = True):
         self.step_count += 1
 
         image = self.camera.capture_image()
@@ -61,12 +59,13 @@ class CameraEnvironment:
             defect_prob2
         )
 
-        self.agent.learn(
-            features,
-            action,
-            reward,
-            next_state=features2
-        )
+        if training:
+         self.agent.learn(
+        features,
+        action,
+        reward,
+        next_state=features2
+    )
 
         return {
             "step": self.step_count,

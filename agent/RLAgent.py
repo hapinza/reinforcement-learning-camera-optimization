@@ -1,5 +1,6 @@
 import random 
 import numpy as np 
+import pickle
 
 # rl just needs to calculate the next step(action) for the camera setting. 
 # it doesn't have to return defect probability where it can be obtained by the features in
@@ -17,17 +18,26 @@ class RLAgent:
     
     def state_to_key(self, state):
 
-           if isinstance(state, dict):
-             brightness = self._bucket(float(state.get("brightness", 0.0)), 10)
-             contrast = self._bucket(float(state.get("contrast", 0.0)), 5)
-             sharpness = self._bucket(float(state.get("sharpness", 0.0)), 50)
-             return (brightness, contrast, sharpness)
+        if isinstance(state, dict):
+            brightness = self._bucket(
+            float(state.get("brightness", 0.0)), 5
+        )
 
-           if isinstance(state, (list, np.ndarray)):
-                arr = np.array(state, dtype=float)
-                return tuple(arr.astype(int))
+            contrast = self._bucket(
+            float(state.get("contrast", 0.0)), 2
+        )
 
-           return state
+            sharpness = self._bucket(
+            float(state.get("sharpness", 0.0)), 5
+        )
+
+            return (brightness, contrast, sharpness)
+
+        if isinstance(state, (list, np.ndarray)):
+            arr = np.array(state, dtype=float)
+            return tuple(arr.astype(int))
+
+        return state
 
     def choose_action(self, state):
         #state with tuble -> imuatble
@@ -67,3 +77,23 @@ class RLAgent:
 
     def _bucket(self, value, bucket_size):
         return int(value // bucket_size) * bucket_size
+    
+
+
+
+    def save_q_table(self, filename="q_table.pkl"):
+        with open(filename, "wb") as f:
+            pickle.dump(self.q_table, f)
+
+        print(f"Q-table saved to {filename}")
+
+
+    def load_q_table(self, filename="q_table.pkl"):
+        try:
+            with open(filename, "rb") as f:
+                self.q_table = pickle.load(f)
+
+            print(f"Q-table loaded from {filename}")
+
+        except FileNotFoundError:
+            print("No saved Q-table found. Starting fresh.")

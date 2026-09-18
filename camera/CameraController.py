@@ -17,6 +17,9 @@ class CameraController:
 
         # Auto exposure off
         self.cam.ExposureAuto.SetValue(PySpin.ExposureAuto_Off)
+        
+        self.cam.GainAuto.SetValue(PySpin.GainAuto_Off)
+        self.cam.Gain.SetValue(self.cam.Gain.GetMin())
 
         # Mono8
         self.cam.PixelFormat.SetValue(PySpin.PixelFormat_Mono8)
