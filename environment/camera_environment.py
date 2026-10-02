@@ -18,9 +18,12 @@ class CameraEnvironment:
         self.agent = RLAgent(self.actions)
         self.step_count = 0
 
-    def step(self, training = True):
+    def step(self, training=True):
         self.step_count += 1
 
+        # --------------------------------------------------
+        # 1. Capture current state
+        # --------------------------------------------------
         image = self.camera.capture_image()
 
         if image is None:
@@ -35,10 +38,41 @@ class CameraEnvironment:
             features
         )
 
+        # --------------------------------------------------
+        # 2. Get current state + Q-values BEFORE action
+        # --------------------------------------------------
+        state_key = self.agent.state_to_key(features)
+
+        q_values_before = self._get_q_values(state_key)
+
+        # --------------------------------------------------
+        # 3. RL chooses action
+        # --------------------------------------------------
         action = self.agent.choose_action(features)
 
+        # --------------------------------------------------
+        # 4. Apply exposure
+        # --------------------------------------------------
         self.camera.set_parameters(**action)
 
+        # --------------------------------------------------
+        # 5. DISCARD stale frame
+        #
+        # Experiment showed that the first frame after
+        # changing exposure still reflects previous exposure.
+        # --------------------------------------------------
+        discarded_image = self.camera.capture_image()
+
+        if discarded_image is None:
+            return {
+                "step": self.step_count,
+                "error": "discard_frame_failed",
+                "action": action
+            }
+
+        # --------------------------------------------------
+        # 6. Capture image with NEW exposure
+        # --------------------------------------------------
         image2 = self.camera.capture_image()
 
         if image2 is None:
@@ -54,30 +88,70 @@ class CameraEnvironment:
             features2
         )
 
+        # --------------------------------------------------
+        # 7. Calculate reward
+        # --------------------------------------------------
         reward = self._calculate_reward(
             defect_prob,
             defect_prob2
         )
 
+        # --------------------------------------------------
+        # 8. Q-learning update
+        # --------------------------------------------------
         if training:
-         self.agent.learn(
-        features,
-        action,
-        reward,
-        next_state=features2
-    )
+            self.agent.learn(
+                features,
+                action,
+                reward,
+                next_state=features2
+            )
+
+        # Q-values after learning
+        q_values_after = self._get_q_values(state_key)
 
         return {
             "step": self.step_count,
+
+            "state_key": state_key,
+
             "before_defect_prob": defect_prob,
             "after_defect_prob": defect_prob2,
+
             "reward": reward,
             "action": action,
+
             "features_before": features,
             "features_after": features2,
-            
-            "image_before": image, 
+
+            "q_values_before": q_values_before,
+            "q_values_after": q_values_after,
+
+            "image_before": image,
             "image_after": image2,
+        }
+
+    def _get_q_values(self, state_key):
+        """
+        Return Q-values for 20ms, 30ms, and 40ms.
+
+        If state has never been seen before,
+        return 0 for all actions.
+        """
+
+        if state_key not in self.agent.q_table:
+            return {
+                20000: 0.0,
+                30000: 0.0,
+                40000: 0.0,
+            }
+
+        state_q = self.agent.q_table[state_key]
+
+        return {
+            20000: state_q.get(0, 0.0),
+            30000: state_q.get(1, 0.0),
+            40000: state_q.get(2, 0.0),
         }
 
     def _calculate_reward(self, before, after):
