@@ -34,6 +34,25 @@ def main():
 
             # Change camera exposure once.
             camera.set_parameters(exposure=exposure)
+            
+            discarded_image = camera.capture_image()
+            
+            if discarded_image is None: 
+            	print("Warning: failed to capture discard frame")
+            	
+            else: 
+            	discarded_features = analyzer.extract_features(discarded_image)
+            	discarded_proxy = analyzer.compute_defect_probability(discarded_features)
+            	
+            	print(
+            	f"Discarded frame | "
+            	f"B= {discarded_features['brightness']:.2f} |"
+            	f"C= {discarded_features['contrast']:.2f} | "
+            	f"S= {discarded_features['sharpness']:2f} | "
+            	f"Proxy={discarded_proxy:.4f}"	
+            	)
+            
+            
 
             # Capture 3 consecutive images after the change.
             for frame_number in range(1, IMAGES_PER_EXPOSURE + 1):

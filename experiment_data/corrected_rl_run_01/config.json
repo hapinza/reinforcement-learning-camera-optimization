@@ -1,0 +1,14 @@
+{
+    "experiment": "corrected_rl_run_01",
+    "steps": 300,
+    "actions": [
+        20000,
+        30000,
+        40000
+    ],
+    "learning_rate": 0.1,
+    "gamma": 0.9,
+    "epsilon": 0.2,
+    "stale_frame_discard": true,
+    "reward": "(before_proxy - after_proxy) * 10"
+}
