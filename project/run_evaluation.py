@@ -18,7 +18,15 @@ from environment.camera_environment import CameraEnvironment
 
 STEPS = 30
 
-EXPERIMENT_NAME = "defect_run_01"
+EXPERIMENT_NAME = "fine_pattern_run_01"
+
+EXPOSURES = [
+    500,
+    1000,
+    2000,
+    5000,
+    10000,
+]
 
 EXPERIMENT_DIR = os.path.join(
     ROOT,
@@ -42,15 +50,7 @@ CSV_FILE = os.path.join(
 )
 
 
-EXPOSURES = [
-    20000,
-    30000,
-    40000
-]
-
-
 def create_directories():
-
     os.makedirs(
         EVALUATION_DIR,
         exist_ok=True
@@ -70,30 +70,33 @@ def create_directories():
 
 
 def main():
-
     create_directories()
 
     env = CameraEnvironment()
-
     rows = []
 
-    try:
+    expected_actions = [
+        action["exposure"]
+        for action in env.actions
+    ]
 
-        # -----------------------------------------
-        # Load learned Q-table
-        # -----------------------------------------
+    if expected_actions != EXPOSURES:
+        raise ValueError(
+            f"Exposure mismatch: "
+            f"CameraEnvironment={expected_actions}, "
+            f"run_evaluation={EXPOSURES}"
+        )
+
+    try:
 
         env.agent.load_q_table(
             Q_TABLE_FILE
         )
 
-        # Evaluation:
-        # no random exploration
+        # Evaluation: no exploration
         env.agent.epsilon = 0.0
 
-        print(
-            "=== Evaluation started ==="
-        )
+        print("=== Evaluation started ===")
 
         print(
             "Loaded states:",
@@ -103,6 +106,11 @@ def main():
         print(
             "Epsilon:",
             env.agent.epsilon
+        )
+
+        print(
+            "Actions:",
+            EXPOSURES
         )
 
         print()
@@ -127,10 +135,6 @@ def main():
                 EVALUATION_DIR,
                 str(exposure)
             )
-
-            # -----------------------------------------
-            # Save images
-            # -----------------------------------------
 
             before_path = os.path.join(
                 exposure_dir,
@@ -166,7 +170,6 @@ def main():
             ]
 
             row = {
-
                 "step":
                     step,
 
@@ -192,10 +195,6 @@ def main():
                 "reward":
                     result["reward"],
 
-                # ------------------------
-                # BEFORE
-                # ------------------------
-
                 "brightness_before":
                     result[
                         "features_before"
@@ -210,10 +209,6 @@ def main():
                     result[
                         "features_before"
                     ]["sharpness"],
-
-                # ------------------------
-                # AFTER
-                # ------------------------
 
                 "brightness_after":
                     result[
@@ -230,26 +225,18 @@ def main():
                         "features_after"
                     ]["sharpness"],
 
-                # ------------------------
-                # Q-table values used
-                # for this decision
-                # ------------------------
-
-                "q_20000":
-                    q_values[20000],
-
-                "q_30000":
-                    q_values[30000],
-
-                "q_40000":
-                    q_values[40000],
-
                 "image_before":
                     before_path,
 
                 "image_after":
                     after_path,
             }
+
+            # Save all Q-values dynamically
+            for exposure_value in EXPOSURES:
+                row[
+                    f"q_{exposure_value}"
+                ] = q_values[exposure_value]
 
             rows.append(row)
 
@@ -269,10 +256,6 @@ def main():
             )
             return
 
-        # -----------------------------------------
-        # Save CSV
-        # -----------------------------------------
-
         with open(
             CSV_FILE,
             "w",
@@ -286,10 +269,6 @@ def main():
 
             writer.writeheader()
             writer.writerows(rows)
-
-        # -----------------------------------------
-        # Summary
-        # -----------------------------------------
 
         after_values = [
             row["after_proxy"]
@@ -313,15 +292,12 @@ def main():
         }
 
         for row in rows:
-
             exposure_counts[
                 row["selected_exposure"]
             ] += 1
 
         print()
-        print(
-            "=== Evaluation Summary ==="
-        )
+        print("=== Evaluation Summary ===")
 
         print(
             "Mean after proxy:",
@@ -359,12 +335,9 @@ def main():
         )
 
         print()
-        print(
-            "Exposure selection counts:"
-        )
+        print("Exposure selection counts:")
 
         for exposure in EXPOSURES:
-
             print(
                 f"{exposure}: "
                 f"{exposure_counts[exposure]}"
