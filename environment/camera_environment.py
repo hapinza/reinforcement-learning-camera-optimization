@@ -10,12 +10,12 @@ class CameraEnvironment:
         self.analyzer = ImageAnalyzer()
 
         self.actions = [
-        {"exposure": 500},
-        {"exposure": 1000},
-        {"exposure": 2000},
-        {"exposure": 5000},
-        {"exposure": 10000},
-    ]
+            {"exposure": 500},
+            {"exposure": 1000},
+            {"exposure": 2000},
+            {"exposure": 5000},
+            {"exposure": 10000},
+        ]
 
         self.agent = RLAgent(self.actions)
         self.step_count = 0
@@ -48,20 +48,21 @@ class CameraEnvironment:
         q_values_before = self._get_q_values(state_key)
 
         # --------------------------------------------------
-        # 3. RL chooses action
+        # 3. RL chooses exposure
         # --------------------------------------------------
         action = self.agent.choose_action(features)
 
         # --------------------------------------------------
-        # 4. Apply exposure
+        # 4. Apply new exposure
         # --------------------------------------------------
         self.camera.set_parameters(**action)
 
         # --------------------------------------------------
-        # 5. DISCARD stale frame
+        # 5. Discard stale frame
         #
-        # Experiment showed that the first frame after
-        # changing exposure still reflects previous exposure.
+        # We experimentally observed that the first frame
+        # after an exposure change still reflects the
+        # previous exposure value.
         # --------------------------------------------------
         discarded_image = self.camera.capture_image()
 
@@ -73,7 +74,7 @@ class CameraEnvironment:
             }
 
         # --------------------------------------------------
-        # 6. Capture image with NEW exposure
+        # 6. Capture image with the NEW exposure
         # --------------------------------------------------
         image2 = self.camera.capture_image()
 
@@ -92,6 +93,7 @@ class CameraEnvironment:
 
         # --------------------------------------------------
         # 7. Calculate reward
+        # Lower proxy = better
         # --------------------------------------------------
         reward = self._calculate_reward(
             defect_prob,
@@ -109,7 +111,7 @@ class CameraEnvironment:
                 next_state=features2
             )
 
-        # Q-values after learning
+        # Q-values after this learning step
         q_values_after = self._get_q_values(state_key)
 
         return {
@@ -133,22 +135,22 @@ class CameraEnvironment:
             "image_after": image2,
         }
 
-      def _get_q_values(self, state_key):
+    def _get_q_values(self, state_key):
         """
         Return Q-values for every exposure action.
-    
-        If state has never been seen before,
-        return 0 for all actions.
+
+        If this state has never been seen before,
+        all Q-values start at 0.
         """
-    
+
         if state_key not in self.agent.q_table:
             return {
                 action["exposure"]: 0.0
                 for action in self.actions
             }
-    
+
         state_q = self.agent.q_table[state_key]
-    
+
         return {
             action["exposure"]: state_q.get(i, 0.0)
             for i, action in enumerate(self.actions)
