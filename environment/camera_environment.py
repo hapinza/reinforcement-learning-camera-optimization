@@ -10,10 +10,12 @@ class CameraEnvironment:
         self.analyzer = ImageAnalyzer()
 
         self.actions = [
-            {"exposure": 20000},
-            {"exposure": 30000},
-            {"exposure": 40000},
-        ]
+        {"exposure": 500},
+        {"exposure": 1000},
+        {"exposure": 2000},
+        {"exposure": 5000},
+        {"exposure": 10000},
+    ]
 
         self.agent = RLAgent(self.actions)
         self.step_count = 0
@@ -131,27 +133,25 @@ class CameraEnvironment:
             "image_after": image2,
         }
 
-    def _get_q_values(self, state_key):
+      def _get_q_values(self, state_key):
         """
-        Return Q-values for 20ms, 30ms, and 40ms.
-
+        Return Q-values for every exposure action.
+    
         If state has never been seen before,
         return 0 for all actions.
         """
-
+    
         if state_key not in self.agent.q_table:
             return {
-                20000: 0.0,
-                30000: 0.0,
-                40000: 0.0,
+                action["exposure"]: 0.0
+                for action in self.actions
             }
-
+    
         state_q = self.agent.q_table[state_key]
-
+    
         return {
-            20000: state_q.get(0, 0.0),
-            30000: state_q.get(1, 0.0),
-            40000: state_q.get(2, 0.0),
+            action["exposure"]: state_q.get(i, 0.0)
+            for i, action in enumerate(self.actions)
         }
 
     def _calculate_reward(self, before, after):
