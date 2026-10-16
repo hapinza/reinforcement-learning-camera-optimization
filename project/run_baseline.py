@@ -15,13 +15,32 @@ from camera.CameraController import CameraController
 from processing.image_analyzer import ImageAnalyzer
 
 
-EXPOSURES = [20000, 30000, 40000]
+EXPOSURES = [500, 1000, 2000, 5000, 10000]
 SAMPLES_PER_EXPOSURE = 10
 
-CSV_FILE = "baseline_results.csv"
+EXPERIMENT_DIR = os.path.join(
+	ROOT,
+	"experiment_data",
+	"defect_run_01"
+	)
+	
+CSV_FILE = os.path.join(
+	EXPERIMENT_DIR,
+	"baseline_results.csv"
+	)
+	
+IMAGE_DIR = os.path.join(
+	EXPERIMENT_DIR,
+	"baseline"
+	)
+	
+os.makedirs(IMAGE_DIR, exist_ok = True)
 
-IMAGE_DIR = "experiment_data/baseline"
-os.makedirs(IMAGE_DIR, exist_ok=True)
+
+
+
+
+
 
 
 
@@ -40,9 +59,13 @@ def main():
             print(f"\n=== Exposure: {exposure} us ===")
 
             camera.set_parameters(exposure=exposure)
+            
+            discarded = camera.capture_image()
+            
+            if discarded is None: 
+            	print("Failed to discard stale frame")
+            	continue
 
-            # exposure 변경 직후 첫 프레임은 버림
-            camera.capture_image()
 
             for sample in range(SAMPLES_PER_EXPOSURE):
 
