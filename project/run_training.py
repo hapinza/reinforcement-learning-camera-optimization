@@ -18,7 +18,15 @@ from environment.camera_environment import CameraEnvironment
 
 STEPS = 300
 
-EXPERIMENT_NAME = "defect_run_01"
+EXPERIMENT_NAME = "fine_pattern_run_01"
+
+EXPOSURES = [
+    500,
+    1000,
+    2000,
+    5000,
+    10000,
+]
 
 EXPERIMENT_DIR = os.path.join(
     ROOT,
@@ -47,20 +55,11 @@ CONFIG_FILE = os.path.join(
 )
 
 
-EXPOSURES = [
-    20000,
-    30000,
-    40000
-]
-
-
 def create_directories():
-
     os.makedirs(EXPERIMENT_DIR, exist_ok=True)
     os.makedirs(TRAINING_DIR, exist_ok=True)
 
     for exposure in EXPOSURES:
-
         exposure_dir = os.path.join(
             TRAINING_DIR,
             str(exposure)
@@ -73,7 +72,6 @@ def create_directories():
 
 
 def save_config(env):
-
     config = {
         "experiment": EXPERIMENT_NAME,
         "steps": STEPS,
@@ -81,11 +79,8 @@ def save_config(env):
         "learning_rate": env.agent.lr,
         "gamma": env.agent.gamma,
         "epsilon": env.agent.epsilon,
-
         "stale_frame_discard": True,
-
-        "reward":
-            "(before_proxy - after_proxy) * 10"
+        "reward": "(before_proxy - after_proxy) * 10"
     }
 
     with open(CONFIG_FILE, "w") as f:
@@ -97,20 +92,30 @@ def save_config(env):
 
 
 def main():
-
     create_directories()
 
     env = CameraEnvironment()
-
     rows = []
 
-    try:
+    expected_actions = [
+        action["exposure"]
+        for action in env.actions
+    ]
 
+    if expected_actions != EXPOSURES:
+        raise ValueError(
+            f"Exposure mismatch: "
+            f"CameraEnvironment={expected_actions}, "
+            f"run_training={EXPOSURES}"
+        )
+
+    try:
         save_config(env)
 
         print("=== Training started ===")
         print("Experiment:", EXPERIMENT_NAME)
         print("Steps:", STEPS)
+        print("Actions:", EXPOSURES)
         print()
 
         for _ in range(STEPS):
@@ -133,10 +138,6 @@ def main():
                 TRAINING_DIR,
                 str(exposure)
             )
-
-            # -----------------------------------------
-            # Save images according to selected exposure
-            # -----------------------------------------
 
             before_path = os.path.join(
                 exposure_dir,
@@ -167,7 +168,6 @@ def main():
             ]
 
             row = {
-
                 "step":
                     step,
 
@@ -192,10 +192,6 @@ def main():
                 "reward":
                     result["reward"],
 
-                # ------------------------
-                # BEFORE features
-                # ------------------------
-
                 "brightness_before":
                     result[
                         "features_before"
@@ -210,10 +206,6 @@ def main():
                     result[
                         "features_before"
                     ]["sharpness"],
-
-                # ------------------------
-                # AFTER features
-                # ------------------------
 
                 "brightness_after":
                     result[
@@ -230,38 +222,22 @@ def main():
                         "features_after"
                     ]["sharpness"],
 
-                # ------------------------
-                # Q values BEFORE decision
-                # ------------------------
-
-                "q_before_20000":
-                    q_before[20000],
-
-                "q_before_30000":
-                    q_before[30000],
-
-                "q_before_40000":
-                    q_before[40000],
-
-                # ------------------------
-                # Q values AFTER learning
-                # ------------------------
-
-                "q_after_20000":
-                    q_after[20000],
-
-                "q_after_30000":
-                    q_after[30000],
-
-                "q_after_40000":
-                    q_after[40000],
-
                 "image_before":
                     before_path,
 
                 "image_after":
                     after_path,
             }
+
+            # Save Q-values dynamically for all exposures
+            for exposure_value in EXPOSURES:
+                row[
+                    f"q_before_{exposure_value}"
+                ] = q_before[exposure_value]
+
+                row[
+                    f"q_after_{exposure_value}"
+                ] = q_after[exposure_value]
 
             rows.append(row)
 
@@ -273,10 +249,6 @@ def main():
                 f"After={row['after_proxy']:.4f} | "
                 f"Reward={row['reward']:.4f}"
             )
-
-        # -----------------------------------------
-        # Save final learned Q-table
-        # -----------------------------------------
 
         env.agent.save_q_table(
             Q_TABLE_FILE
