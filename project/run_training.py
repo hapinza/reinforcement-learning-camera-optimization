@@ -18,7 +18,7 @@ from environment.camera_environment import CameraEnvironment
 
 STEPS = 300
 
-EXPERIMENT_NAME = "corrected_rl_run_01"
+EXPERIMENT_NAME = "defect_run_01"
 
 EXPERIMENT_DIR = os.path.join(
     ROOT,
