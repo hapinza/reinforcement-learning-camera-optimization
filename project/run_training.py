@@ -18,7 +18,7 @@ from environment.camera_environment import CameraEnvironment
 
 STEPS = 300
 
-EXPERIMENT_NAME = "fine_pattern_run_01"
+EXPERIMENT_NAME = "lighting_change_run_02"
 
 EXPOSURES = [
     500,

@@ -18,7 +18,8 @@ from environment.camera_environment import CameraEnvironment
 
 STEPS = 30
 
-EXPERIMENT_NAME = "fine_pattern_run_01"
+OLD_EXPERIMENT_NAME = "fine_pattern_run_01"
+NEW_EXPERIMENT_NAME = "lighting_change_run_02"
 
 EXPOSURES = [
     500,
@@ -28,19 +29,26 @@ EXPOSURES = [
     10000,
 ]
 
-EXPERIMENT_DIR = os.path.join(
+OLD_EXPERIMENT_DIR = os.path.join(
     ROOT,
     "experiment_data",
-    EXPERIMENT_NAME
+    OLD_EXPERIMENT_NAME
+)
+
+NEW_EVALUATION_DIR = os.path.join(
+    ROOT,
+    "experiment_data",
+    NEW_EXPERIMENT_NAME
 )
 
 EVALUATION_DIR = os.path.join(
-    EXPERIMENT_DIR,
-    "evaluation"
+   NEW_EVALUATION_DIR,
+   "evaluation"
 )
 
+
 Q_TABLE_FILE = os.path.join(
-    EXPERIMENT_DIR,
+    NEW_EVALUATION_DIR,
     "q_table.pkl"
 )
 

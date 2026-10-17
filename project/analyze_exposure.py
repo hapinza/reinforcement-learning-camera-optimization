@@ -6,7 +6,7 @@ ROOT = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..")
 )
 
-EXPERIMENT_NAME = "fine_pattern_run_01"
+EXPERIMENT_NAME = "lighting_change_run_02"
 
 CSV_FILE = os.path.join(
     ROOT,

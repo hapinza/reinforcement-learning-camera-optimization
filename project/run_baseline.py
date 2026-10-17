@@ -21,7 +21,7 @@ SAMPLES_PER_EXPOSURE = 10
 EXPERIMENT_DIR = os.path.join(
 	ROOT,
 	"experiment_data",
-	"defect_run_01"
+	"lighting_change_run_02"
 	)
 	
 CSV_FILE = os.path.join(
