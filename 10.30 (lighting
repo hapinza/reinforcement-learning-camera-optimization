@@ -1,0 +1,771 @@
+seongho@seongho-desktop:~$ cd ~/SURF_rl_camera_optimization/
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   camera/__pycache__/__init__.cpython-310.pyc
+	modified:   environment/__pycache__/__init__.cpython-310.pyc
+	modified:   environment/__pycache__/camera_environment.cpython-310.pyc
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	experiment_data/10.16 defect_run_01/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ cd ~/SURF_rl_camera_optimization/
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ grep -n "experiment_data" project/run_baseline.py
+23:	"experiment_data",
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ nl -ba project/run_baseline.py | sed -n '15,35p'
+    15	from processing.image_analyzer import ImageAnalyzer
+    16	
+    17	
+    18	EXPOSURES = [500, 1000, 2000, 5000, 10000]
+    19	SAMPLES_PER_EXPOSURE = 10
+    20	
+    21	EXPERIMENT_DIR = os.path.join(
+    22		ROOT,
+    23		"experiment_data",
+    24		"defect_run_01"
+    25		)
+    26		
+    27	CSV_FILE = os.path.join(
+    28		EXPERIMENT_DIR,
+    29		"baseline_results.csv"
+    30		)
+    31		
+    32	IMAGE_DIR = os.path.join(
+    33		EXPERIMENT_DIR,
+    34		"baseline"
+    35		)
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ sed -i 's/defect_run_01"/"lightening_change_run_02"/' project/run_baseline.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ grep -n "lightening_change_run_02" project/run_baseline.py
+24:	""lightening_change_run_02"
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ sed -i 's/defect_run_01"/"lighting_change_run_02"/' project/run_baseline.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ grep -n "lighting_change_run_02" project/run_baseline.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ grep -n "lighting_change_run_02" project/run_baseline.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ sed -i 's/lightening_change_run_02/lighting_change_run_02/' project/run_baseline.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ grep -n "lighting_change_run_02" project/run_baseline.py
+24:	""lighting_change_run_02"
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_baseline.py
+  File "/home/seongho/SURF_rl_camera_optimization/project/run_baseline.py", line 24
+    ""lighting_change_run_02"
+                            ^
+SyntaxError: unterminated string literal (detected at line 24)
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ sed -i '24c\        "lighting^C
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ nano project/run_baseline.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_baseline.py
+camera initialized
+image analyzer is initilaized
+
+=== Exposure: 500 us ===
+01 | B=31.64 C=1.15 S=6.73 Proxy=0.9086
+02 | B=31.66 C=1.16 S=6.72 Proxy=0.9085
+03 | B=31.46 C=1.14 S=6.69 Proxy=0.9091
+04 | B=31.52 C=1.15 S=6.70 Proxy=0.9089
+05 | B=31.70 C=1.15 S=6.71 Proxy=0.9084
+06 | B=31.30 C=1.14 S=6.68 Proxy=0.9096
+07 | B=31.51 C=1.15 S=6.71 Proxy=0.9090
+08 | B=31.52 C=1.15 S=6.71 Proxy=0.9089
+09 | B=31.45 C=1.14 S=6.72 Proxy=0.9091
+10 | B=31.41 C=1.14 S=6.68 Proxy=0.9093
+
+=== Exposure: 1000 us ===
+01 | B=31.82 C=1.15 S=6.80 Proxy=0.9081
+02 | B=31.63 C=1.15 S=6.77 Proxy=0.9086
+03 | B=31.63 C=1.14 S=6.79 Proxy=0.9087
+04 | B=31.77 C=1.15 S=6.77 Proxy=0.9082
+05 | B=31.77 C=1.14 S=6.79 Proxy=0.9083
+06 | B=31.75 C=1.15 S=6.78 Proxy=0.9083
+07 | B=31.93 C=1.16 S=6.79 Proxy=0.9078
+08 | B=31.71 C=1.14 S=6.77 Proxy=0.9084
+09 | B=31.86 C=1.14 S=6.79 Proxy=0.9080
+10 | B=31.96 C=1.16 S=6.79 Proxy=0.9077
+
+=== Exposure: 2000 us ===
+01 | B=32.59 C=1.15 S=6.93 Proxy=0.9060
+02 | B=32.37 C=1.15 S=6.91 Proxy=0.9066
+03 | B=32.57 C=1.16 S=6.90 Proxy=0.9060
+04 | B=32.50 C=1.15 S=6.93 Proxy=0.9063
+05 | B=32.61 C=1.16 S=6.93 Proxy=0.9059
+06 | B=32.48 C=1.16 S=6.93 Proxy=0.9062
+07 | B=32.52 C=1.15 S=6.91 Proxy=0.9062
+08 | B=32.40 C=1.15 S=6.92 Proxy=0.9065
+09 | B=32.62 C=1.15 S=6.93 Proxy=0.9059
+10 | B=32.72 C=1.17 S=6.91 Proxy=0.9056
+
+=== Exposure: 5000 us ===
+01 | B=34.50 C=1.20 S=7.29 Proxy=0.9005
+02 | B=34.50 C=1.21 S=7.29 Proxy=0.9005
+03 | B=34.50 C=1.22 S=7.29 Proxy=0.9005
+04 | B=34.53 C=1.21 S=7.28 Proxy=0.9005
+05 | B=34.51 C=1.20 S=7.29 Proxy=0.9005
+06 | B=34.63 C=1.22 S=7.30 Proxy=0.9001
+07 | B=34.87 C=1.23 S=7.29 Proxy=0.8995
+08 | B=34.65 C=1.22 S=7.30 Proxy=0.9001
+09 | B=34.61 C=1.23 S=7.30 Proxy=0.9002
+10 | B=34.71 C=1.22 S=7.30 Proxy=0.8999
+
+=== Exposure: 10000 us ===
+01 | B=37.85 C=1.45 S=8.06 Proxy=0.8903
+02 | B=37.88 C=1.47 S=8.06 Proxy=0.8902
+03 | B=38.03 C=1.47 S=8.10 Proxy=0.8898
+04 | B=38.02 C=1.46 S=8.08 Proxy=0.8898
+05 | B=38.09 C=1.44 S=8.08 Proxy=0.8897
+06 | B=38.09 C=1.47 S=8.06 Proxy=0.8896
+07 | B=38.01 C=1.46 S=8.07 Proxy=0.8899
+08 | B=38.21 C=1.48 S=8.09 Proxy=0.8892
+09 | B=38.10 C=1.47 S=8.05 Proxy=0.8896
+10 | B=37.88 C=1.45 S=8.07 Proxy=0.8903
+
+=== SUMMARY ===
+
+Exposure 500 us
+brightness: mean=31.5171, std=0.1157
+contrast: mean=1.1466, std=0.0060
+sharpness: mean=6.7068, std=0.0150
+proxy: mean=0.9089, std=0.0003
+
+Exposure 1000 us
+brightness: mean=31.7838, std=0.1065
+contrast: mean=1.1475, std=0.0081
+sharpness: mean=6.7846, std=0.0094
+proxy: mean=0.9082, std=0.0003
+
+Exposure 2000 us
+brightness: mean=32.5384, std=0.1010
+contrast: mean=1.1555, std=0.0067
+sharpness: mean=6.9202, std=0.0102
+proxy: mean=0.9061, std=0.0003
+
+Exposure 5000 us
+brightness: mean=34.6014, std=0.1137
+contrast: mean=1.2165, std=0.0089
+sharpness: mean=7.2939, std=0.0065
+proxy: mean=0.9002, std=0.0003
+
+Exposure 10000 us
+brightness: mean=38.0157, std=0.1106
+contrast: mean=1.4635, std=0.0115
+sharpness: mean=8.0705, std=0.0159
+proxy: mean=0.8898, std=0.0003
+
+Saved: /home/seongho/SURF_rl_camera_optimization/experiment_data/lighting_change_run_02/baseline_results.csv
+camera closed
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ grep -n "defect_run_01" project/analyze_baseline.py
+10:EXPERIMENT_NAME = "defect_run_01"
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/anaylze_baseline.pu
+python3: can't open file '/home/seongho/SURF_rl_camera_optimization/project/anaylze_baseline.pu': [Errno 2] No such file or directory
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/anaylze_baseline.py
+python3: can't open file '/home/seongho/SURF_rl_camera_optimization/project/anaylze_baseline.py': [Errno 2] No such file or directory
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/analyze_baseline.py
+
+=== Baseline Exposure Analysis ===
+Exposure | Samples | Mean Proxy | Std Proxy
+------------------------------------------------
+     500 |      10 | 0.9089     | 0.0003
+    1000 |      10 | 0.9082     | 0.0003
+    2000 |      10 | 0.9061     | 0.0003
+    5000 |      10 | 0.9002     | 0.0003
+   10000 |      10 | 0.8898     | 0.0003
+
+Best baseline exposure: 10000 us
+Best baseline mean proxy: 0.8898
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ grep -nE 'EXPERIMENT|q_table|Q_TABLE|evaluation' project/run_evaluation.py
+21:EXPERIMENT_NAME = "fine_pattern_run_01"
+31:EXPERIMENT_DIR = os.path.join(
+34:    EXPERIMENT_NAME
+38:    EXPERIMENT_DIR,
+39:    "evaluation"
+42:Q_TABLE_FILE = os.path.join(
+43:    EXPERIMENT_DIR,
+44:    "q_table.pkl"
+49:    "evaluation_results.csv"
+87:            f"run_evaluation={EXPOSURES}"
+92:        env.agent.load_q_table(
+93:            Q_TABLE_FILE
+103:            len(env.agent.q_table)
+165:                in env.agent.q_table
+255:                "No successful evaluation samples."
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_evaluation.py
+  File "/home/seongho/SURF_rl_camera_optimization/project/run_evaluation.py", line 40
+    "experiment_data"
+    ^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_evaluation.py
+  File "/home/seongho/SURF_rl_camera_optimization/project/run_evaluation.py", line 46
+    "old_q_evaluation"
+    ^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_evaluation.py
+\  File "/home/seongho/SURF_rl_camera_optimization/project/run_evaluation.py", line 46
+    "old_q_evaluation",
+    ^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_evaluation.py
+  File "/home/seongho/SURF_rl_camera_optimization/project/run_evaluation.py", line 46
+    "old_q_evaluation"
+    ^^^^^^^^^^^^^^^^^^
+SyntaxError: invalid syntax
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_evaluation.py
+camera initialized
+image analyzer is initilaized
+No saved Q-table found. Starting fresh.
+=== Evaluation started ===
+Loaded states: 0
+Epsilon: 0.0
+Actions: [500, 1000, 2000, 5000, 10000]
+
+Step 001 | State=(35, 0, 5) | Exposure=500 | Before=0.8904 | After=0.9096 | Reward=-0.1915 | Seen=False
+Step 002 | State=(30, 0, 5) | Exposure=2000 | Before=0.9106 | After=0.9073 | Reward=0.0335 | Seen=False
+Step 003 | State=(30, 0, 5) | Exposure=2000 | Before=0.9068 | After=0.9072 | Reward=-0.0035 | Seen=False
+Step 004 | State=(30, 0, 5) | Exposure=500 | Before=0.9072 | After=0.9106 | Reward=-0.0336 | Seen=False
+Step 005 | State=(30, 0, 5) | Exposure=500 | Before=0.9106 | After=0.9096 | Reward=0.0100 | Seen=False
+Step 006 | State=(30, 0, 5) | Exposure=2000 | Before=0.9102 | After=0.9071 | Reward=0.0311 | Seen=False
+Step 007 | State=(30, 0, 5) | Exposure=10000 | Before=0.9072 | After=0.8899 | Reward=0.1737 | Seen=False
+Step 008 | State=(35, 0, 5) | Exposure=5000 | Before=0.8904 | After=0.9013 | Reward=-0.1086 | Seen=False
+Step 009 | State=(30, 0, 5) | Exposure=2000 | Before=0.9012 | After=0.9069 | Reward=-0.0570 | Seen=False
+Step 010 | State=(30, 0, 5) | Exposure=2000 | Before=0.9075 | After=0.9070 | Reward=0.0050 | Seen=False
+Step 011 | State=(30, 0, 5) | Exposure=5000 | Before=0.9073 | After=0.9012 | Reward=0.0608 | Seen=False
+Step 012 | State=(30, 0, 5) | Exposure=2000 | Before=0.9014 | After=0.9074 | Reward=-0.0601 | Seen=False
+Step 013 | State=(30, 0, 5) | Exposure=1000 | Before=0.9076 | After=0.9089 | Reward=-0.0125 | Seen=False
+Step 014 | State=(30, 0, 5) | Exposure=5000 | Before=0.9089 | After=0.9015 | Reward=0.0745 | Seen=False
+Step 015 | State=(30, 0, 5) | Exposure=500 | Before=0.9009 | After=0.9103 | Reward=-0.0940 | Seen=False
+Step 016 | State=(30, 0, 5) | Exposure=500 | Before=0.9101 | After=0.9108 | Reward=-0.0064 | Seen=False
+Step 017 | State=(30, 0, 5) | Exposure=500 | Before=0.9107 | After=0.9106 | Reward=0.0012 | Seen=False
+Step 018 | State=(30, 0, 5) | Exposure=5000 | Before=0.9104 | After=0.9012 | Reward=0.0918 | Seen=False
+Step 019 | State=(30, 0, 5) | Exposure=500 | Before=0.9002 | After=0.9104 | Reward=-0.1019 | Seen=False
+Step 020 | State=(30, 0, 5) | Exposure=2000 | Before=0.9105 | After=0.9075 | Reward=0.0299 | Seen=False
+Step 021 | State=(30, 0, 5) | Exposure=500 | Before=0.9067 | After=0.9101 | Reward=-0.0332 | Seen=False
+Step 022 | State=(30, 0, 5) | Exposure=1000 | Before=0.9105 | After=0.9092 | Reward=0.0133 | Seen=False
+Step 023 | State=(30, 0, 5) | Exposure=10000 | Before=0.9091 | After=0.8900 | Reward=0.1909 | Seen=False
+Step 024 | State=(35, 0, 5) | Exposure=1000 | Before=0.8902 | After=0.9094 | Reward=-0.1922 | Seen=False
+Step 025 | State=(30, 0, 5) | Exposure=5000 | Before=0.9096 | After=0.9020 | Reward=0.0760 | Seen=False
+Step 026 | State=(30, 0, 5) | Exposure=2000 | Before=0.9015 | After=0.9074 | Reward=-0.0583 | Seen=False
+Step 027 | State=(30, 0, 5) | Exposure=500 | Before=0.9078 | After=0.9104 | Reward=-0.0263 | Seen=False
+Step 028 | State=(30, 0, 5) | Exposure=1000 | Before=0.9101 | After=0.9093 | Reward=0.0071 | Seen=False
+Step 029 | State=(30, 0, 5) | Exposure=5000 | Before=0.9096 | After=0.9015 | Reward=0.0805 | Seen=False
+Step 030 | State=(30, 0, 5) | Exposure=500 | Before=0.9015 | After=0.9109 | Reward=-0.0937 | Seen=False
+
+=== Evaluation Summary ===
+Mean after proxy: 0.9062
+Std after proxy: 0.0054
+Mean reward: -0.0064
+Known states: 0/30
+
+Exposure selection counts:
+500: 10
+1000: 4
+2000: 8
+5000: 6
+10000: 2
+
+Saved: /home/seongho/SURF_rl_camera_optimization/experiment_data/lighting_change_run_02/old_q_evaluation/evaluation_results.csv
+camera closed
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ grep -nE 'EXPERIMENT|q_table|Q_TABLE|training" project/run_training.py
+> ^C
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ grep -nE 'EXPERIMENT|q_table|Q_TABLE|training' project/run_training.py
+21:EXPERIMENT_NAME = "fine_pattern_run_01"
+31:EXPERIMENT_DIR = os.path.join(
+34:    EXPERIMENT_NAME
+38:    EXPERIMENT_DIR,
+39:    "training"
+44:    "training_results.csv"
+47:Q_TABLE_FILE = os.path.join(
+48:    EXPERIMENT_DIR,
+49:    "q_table.pkl"
+53:    EXPERIMENT_DIR,
+59:    os.makedirs(EXPERIMENT_DIR, exist_ok=True)
+76:        "experiment": EXPERIMENT_NAME,
+109:            f"run_training={EXPOSURES}"
+116:        print("Experiment:", EXPERIMENT_NAME)
+124:                training=True
+253:        env.agent.save_q_table(
+254:            Q_TABLE_FILE
+278:            len(env.agent.q_table)
+283:            Q_TABLE_FILE
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ grep -nE 'load_q_table|Q_TABLE_FILE|RLAgent' project/run_training.py
+47:Q_TABLE_FILE = os.path.join(
+254:            Q_TABLE_FILE
+283:            Q_TABLE_FILE
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/run_training.py
+camera initialized
+image analyzer is initilaized
+=== Training started ===
+Experiment: lighting_change_run_02
+Steps: 300
+Actions: [500, 1000, 2000, 5000, 10000]
+
+Step 001 | State=(30, 0, 5) | Exposure=500 | Before=0.9102 | After=0.9110 | Reward=-0.0078
+Step 002 | State=(30, 0, 5) | Exposure=1000 | Before=0.9101 | After=0.9094 | Reward=0.0076
+Step 003 | State=(30, 0, 5) | Exposure=5000 | Before=0.9094 | After=0.9013 | Reward=0.0808
+Step 004 | State=(30, 0, 5) | Exposure=5000 | Before=0.9013 | After=0.9015 | Reward=-0.0019
+Step 005 | State=(30, 0, 5) | Exposure=5000 | Before=0.9017 | After=0.9018 | Reward=-0.0014
+Step 006 | State=(30, 0, 5) | Exposure=5000 | Before=0.9015 | After=0.9010 | Reward=0.0042
+Step 007 | State=(30, 0, 5) | Exposure=5000 | Before=0.9014 | After=0.9014 | Reward=-0.0006
+Step 008 | State=(30, 0, 5) | Exposure=5000 | Before=0.9016 | After=0.9018 | Reward=-0.0017
+Step 009 | State=(30, 0, 5) | Exposure=5000 | Before=0.9015 | After=0.9014 | Reward=0.0015
+Step 010 | State=(30, 0, 5) | Exposure=5000 | Before=0.9019 | After=0.9013 | Reward=0.0062
+Step 011 | State=(30, 0, 5) | Exposure=5000 | Before=0.9013 | After=0.9019 | Reward=-0.0059
+Step 012 | State=(30, 0, 5) | Exposure=5000 | Before=0.9019 | After=0.9017 | Reward=0.0021
+Step 013 | State=(30, 0, 5) | Exposure=5000 | Before=0.9016 | After=0.9013 | Reward=0.0034
+Step 014 | State=(30, 0, 5) | Exposure=5000 | Before=0.9015 | After=0.9015 | Reward=-0.0003
+Step 015 | State=(30, 0, 5) | Exposure=5000 | Before=0.9012 | After=0.9011 | Reward=0.0006
+Step 016 | State=(30, 0, 5) | Exposure=5000 | Before=0.9020 | After=0.9015 | Reward=0.0050
+Step 017 | State=(30, 0, 5) | Exposure=5000 | Before=0.9013 | After=0.9015 | Reward=-0.0020
+Step 018 | State=(30, 0, 5) | Exposure=5000 | Before=0.9017 | After=0.9011 | Reward=0.0058
+Step 019 | State=(30, 0, 5) | Exposure=5000 | Before=0.9011 | After=0.9010 | Reward=0.0012
+Step 020 | State=(30, 0, 5) | Exposure=5000 | Before=0.9012 | After=0.9014 | Reward=-0.0021
+Step 021 | State=(30, 0, 5) | Exposure=10000 | Before=0.9011 | After=0.8912 | Reward=0.0992
+Step 022 | State=(35, 0, 5) | Exposure=500 | Before=0.8903 | After=0.9100 | Reward=-0.1972
+Step 023 | State=(30, 0, 5) | Exposure=10000 | Before=0.9104 | After=0.8903 | Reward=0.2010
+Step 024 | State=(35, 0, 5) | Exposure=1000 | Before=0.8913 | After=0.9098 | Reward=-0.1849
+Step 025 | State=(30, 0, 5) | Exposure=10000 | Before=0.9093 | After=0.8909 | Reward=0.1836
+Step 026 | State=(35, 0, 5) | Exposure=2000 | Before=0.8910 | After=0.9076 | Reward=-0.1658
+Step 027 | State=(30, 0, 5) | Exposure=10000 | Before=0.9077 | After=0.8906 | Reward=0.1702
+Step 028 | State=(35, 0, 5) | Exposure=5000 | Before=0.8908 | After=0.9012 | Reward=-0.1034
+Step 029 | State=(30, 0, 5) | Exposure=10000 | Before=0.9018 | After=0.8916 | Reward=0.1020
+Step 030 | State=(35, 0, 5) | Exposure=10000 | Before=0.8907 | After=0.8911 | Reward=-0.0038
+Step 031 | State=(35, 0, 5) | Exposure=10000 | Before=0.8914 | After=0.8906 | Reward=0.0081
+Step 032 | State=(35, 0, 5) | Exposure=10000 | Before=0.8913 | After=0.8909 | Reward=0.0038
+Step 033 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8911 | Reward=-0.0029
+Step 034 | State=(35, 0, 5) | Exposure=2000 | Before=0.8913 | After=0.9082 | Reward=-0.1687
+Step 035 | State=(30, 0, 5) | Exposure=10000 | Before=0.9074 | After=0.8909 | Reward=0.1647
+Step 036 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8909 | Reward=-0.0002
+Step 037 | State=(35, 0, 5) | Exposure=10000 | Before=0.8913 | After=0.8909 | Reward=0.0041
+Step 038 | State=(35, 0, 5) | Exposure=10000 | Before=0.8916 | After=0.8909 | Reward=0.0074
+Step 039 | State=(35, 0, 5) | Exposure=10000 | Before=0.8912 | After=0.8908 | Reward=0.0043
+Step 040 | State=(35, 0, 5) | Exposure=10000 | Before=0.8914 | After=0.8913 | Reward=0.0003
+Step 041 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8914 | Reward=-0.0052
+Step 042 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8908 | Reward=0.0016
+Step 043 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8908 | Reward=0.0013
+Step 044 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8907 | Reward=0.0022
+Step 045 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8909 | Reward=0.0011
+Step 046 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8906 | Reward=0.0029
+Step 047 | State=(35, 0, 5) | Exposure=10000 | Before=0.8905 | After=0.8909 | Reward=-0.0036
+Step 048 | State=(35, 0, 5) | Exposure=5000 | Before=0.8907 | After=0.9015 | Reward=-0.1075
+Step 049 | State=(30, 0, 5) | Exposure=10000 | Before=0.9012 | After=0.8905 | Reward=0.1065
+Step 050 | State=(35, 0, 5) | Exposure=500 | Before=0.8898 | After=0.9105 | Reward=-0.2078
+Step 051 | State=(30, 0, 5) | Exposure=10000 | Before=0.9107 | After=0.8907 | Reward=0.2001
+Step 052 | State=(35, 0, 5) | Exposure=10000 | Before=0.8913 | After=0.8912 | Reward=0.0012
+Step 053 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8915 | Reward=-0.0056
+Step 054 | State=(35, 0, 5) | Exposure=10000 | Before=0.8911 | After=0.8909 | Reward=0.0016
+Step 055 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8915 | Reward=-0.0066
+Step 056 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8913 | Reward=-0.0050
+Step 057 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8909 | Reward=0.0004
+Step 058 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8908 | Reward=0.0007
+Step 059 | State=(35, 0, 5) | Exposure=10000 | Before=0.8916 | After=0.8906 | Reward=0.0105
+Step 060 | State=(35, 0, 5) | Exposure=10000 | Before=0.8901 | After=0.8905 | Reward=-0.0038
+Step 061 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8910 | Reward=-0.0007
+Step 062 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8908 | Reward=0.0005
+Step 063 | State=(35, 0, 5) | Exposure=2000 | Before=0.8907 | After=0.9082 | Reward=-0.1753
+Step 064 | State=(30, 0, 5) | Exposure=10000 | Before=0.9081 | After=0.8912 | Reward=0.1686
+Step 065 | State=(35, 0, 5) | Exposure=10000 | Before=0.8904 | After=0.8912 | Reward=-0.0075
+Step 066 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8910 | Reward=-0.0021
+Step 067 | State=(35, 0, 5) | Exposure=10000 | Before=0.8911 | After=0.8904 | Reward=0.0072
+Step 068 | State=(35, 0, 5) | Exposure=10000 | Before=0.8906 | After=0.8905 | Reward=0.0011
+Step 069 | State=(35, 0, 5) | Exposure=10000 | Before=0.8904 | After=0.8903 | Reward=0.0003
+Step 070 | State=(35, 0, 5) | Exposure=5000 | Before=0.8908 | After=0.9014 | Reward=-0.1054
+Step 071 | State=(30, 0, 5) | Exposure=5000 | Before=0.9016 | After=0.9014 | Reward=0.0022
+Step 072 | State=(30, 0, 5) | Exposure=10000 | Before=0.9013 | After=0.8906 | Reward=0.1072
+Step 073 | State=(35, 0, 5) | Exposure=10000 | Before=0.8902 | After=0.8907 | Reward=-0.0049
+Step 074 | State=(35, 0, 5) | Exposure=10000 | Before=0.8906 | After=0.8905 | Reward=0.0018
+Step 075 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8904 | Reward=0.0059
+Step 076 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8907 | Reward=0.0028
+Step 077 | State=(35, 0, 5) | Exposure=10000 | Before=0.8911 | After=0.8907 | Reward=0.0037
+Step 078 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8909 | Reward=0.0012
+Step 079 | State=(35, 0, 5) | Exposure=10000 | Before=0.8902 | After=0.8911 | Reward=-0.0092
+Step 080 | State=(35, 0, 5) | Exposure=10000 | Before=0.8904 | After=0.8911 | Reward=-0.0071
+Step 081 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8907 | Reward=0.0007
+Step 082 | State=(35, 0, 5) | Exposure=10000 | Before=0.8911 | After=0.8912 | Reward=-0.0015
+Step 083 | State=(35, 0, 5) | Exposure=10000 | Before=0.8907 | After=0.8908 | Reward=-0.0011
+Step 084 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8916 | Reward=-0.0051
+Step 085 | State=(35, 0, 5) | Exposure=10000 | Before=0.8914 | After=0.8903 | Reward=0.0111
+Step 086 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8907 | Reward=0.0013
+Step 087 | State=(35, 0, 5) | Exposure=10000 | Before=0.8912 | After=0.8907 | Reward=0.0056
+Step 088 | State=(35, 0, 5) | Exposure=10000 | Before=0.8906 | After=0.8909 | Reward=-0.0036
+Step 089 | State=(35, 0, 5) | Exposure=10000 | Before=0.8912 | After=0.8908 | Reward=0.0041
+Step 090 | State=(35, 0, 5) | Exposure=10000 | Before=0.8902 | After=0.8912 | Reward=-0.0096
+Step 091 | State=(35, 0, 5) | Exposure=10000 | Before=0.8907 | After=0.8908 | Reward=-0.0010
+Step 092 | State=(35, 0, 5) | Exposure=10000 | Before=0.8907 | After=0.8910 | Reward=-0.0034
+Step 093 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8908 | Reward=0.0009
+Step 094 | State=(35, 0, 5) | Exposure=10000 | Before=0.8911 | After=0.8912 | Reward=-0.0011
+Step 095 | State=(35, 0, 5) | Exposure=10000 | Before=0.8904 | After=0.8905 | Reward=-0.0016
+Step 096 | State=(35, 0, 5) | Exposure=10000 | Before=0.8904 | After=0.8902 | Reward=0.0013
+Step 097 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8906 | Reward=0.0015
+Step 098 | State=(35, 0, 5) | Exposure=5000 | Before=0.8905 | After=0.9015 | Reward=-0.1104
+Step 099 | State=(30, 0, 5) | Exposure=10000 | Before=0.9012 | After=0.8904 | Reward=0.1074
+Step 100 | State=(35, 0, 5) | Exposure=10000 | Before=0.8905 | After=0.8906 | Reward=-0.0007
+Step 101 | State=(35, 0, 5) | Exposure=10000 | Before=0.8915 | After=0.8908 | Reward=0.0064
+Step 102 | State=(35, 0, 5) | Exposure=10000 | Before=0.8907 | After=0.8906 | Reward=0.0005
+Step 103 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8906 | Reward=0.0037
+Step 104 | State=(35, 0, 5) | Exposure=10000 | Before=0.8906 | After=0.8903 | Reward=0.0027
+Step 105 | State=(35, 0, 5) | Exposure=10000 | Before=0.8903 | After=0.8910 | Reward=-0.0069
+Step 106 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8900 | Reward=0.0073
+Step 107 | State=(35, 0, 5) | Exposure=10000 | Before=0.8906 | After=0.8902 | Reward=0.0034
+Step 108 | State=(35, 0, 5) | Exposure=10000 | Before=0.8902 | After=0.8907 | Reward=-0.0054
+Step 109 | State=(35, 0, 5) | Exposure=500 | Before=0.8904 | After=0.9104 | Reward=-0.1998
+Step 110 | State=(30, 0, 5) | Exposure=10000 | Before=0.9105 | After=0.8908 | Reward=0.1972
+Step 111 | State=(35, 0, 5) | Exposure=10000 | Before=0.8903 | After=0.8903 | Reward=-0.0003
+Step 112 | State=(35, 0, 5) | Exposure=10000 | Before=0.8901 | After=0.8911 | Reward=-0.0095
+Step 113 | State=(35, 0, 5) | Exposure=10000 | Before=0.8904 | After=0.8905 | Reward=-0.0017
+Step 114 | State=(35, 0, 5) | Exposure=10000 | Before=0.8907 | After=0.8909 | Reward=-0.0021
+Step 115 | State=(35, 0, 5) | Exposure=5000 | Before=0.8908 | After=0.9020 | Reward=-0.1117
+Step 116 | State=(30, 0, 5) | Exposure=10000 | Before=0.9013 | After=0.8901 | Reward=0.1116
+Step 117 | State=(35, 0, 5) | Exposure=10000 | Before=0.8911 | After=0.8916 | Reward=-0.0046
+Step 118 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8906 | Reward=0.0031
+Step 119 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8909 | Reward=-0.0009
+Step 120 | State=(35, 0, 5) | Exposure=2000 | Before=0.8914 | After=0.9075 | Reward=-0.1607
+Step 121 | State=(30, 0, 5) | Exposure=10000 | Before=0.9076 | After=0.8909 | Reward=0.1669
+Step 122 | State=(35, 0, 5) | Exposure=10000 | Before=0.8911 | After=0.8917 | Reward=-0.0059
+Step 123 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8909 | Reward=-0.0005
+Step 124 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8909 | Reward=0.0014
+Step 125 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8910 | Reward=-0.0003
+Step 126 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8910 | Reward=-0.0007
+Step 127 | State=(35, 0, 5) | Exposure=2000 | Before=0.8910 | After=0.9076 | Reward=-0.1658
+Step 128 | State=(30, 0, 5) | Exposure=10000 | Before=0.9076 | After=0.8918 | Reward=0.1585
+Step 129 | State=(35, 0, 5) | Exposure=10000 | Before=0.8919 | After=0.8905 | Reward=0.0137
+Step 130 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8903 | Reward=0.0075
+Step 131 | State=(35, 0, 5) | Exposure=10000 | Before=0.8906 | After=0.8913 | Reward=-0.0069
+Step 132 | State=(35, 0, 5) | Exposure=10000 | Before=0.8912 | After=0.8910 | Reward=0.0016
+Step 133 | State=(35, 0, 5) | Exposure=500 | Before=0.8907 | After=0.9104 | Reward=-0.1973
+Step 134 | State=(30, 0, 5) | Exposure=10000 | Before=0.9106 | After=0.8912 | Reward=0.1948
+Step 135 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8906 | Reward=0.0024
+Step 136 | State=(35, 0, 5) | Exposure=10000 | Before=0.8913 | After=0.8904 | Reward=0.0091
+Step 137 | State=(35, 0, 5) | Exposure=10000 | Before=0.8906 | After=0.8908 | Reward=-0.0021
+Step 138 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8909 | Reward=0.0017
+Step 139 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8912 | Reward=-0.0021
+Step 140 | State=(35, 0, 5) | Exposure=10000 | Before=0.8911 | After=0.8912 | Reward=-0.0012
+Step 141 | State=(35, 0, 5) | Exposure=10000 | Before=0.8904 | After=0.8911 | Reward=-0.0065
+Step 142 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8912 | Reward=-0.0025
+Step 143 | State=(35, 0, 5) | Exposure=10000 | Before=0.8915 | After=0.8911 | Reward=0.0047
+Step 144 | State=(35, 0, 5) | Exposure=10000 | Before=0.8912 | After=0.8913 | Reward=-0.0008
+Step 145 | State=(35, 0, 5) | Exposure=10000 | Before=0.8911 | After=0.8914 | Reward=-0.0030
+Step 146 | State=(35, 0, 5) | Exposure=1000 | Before=0.8913 | After=0.9093 | Reward=-0.1803
+Step 147 | State=(30, 0, 5) | Exposure=10000 | Before=0.9094 | After=0.8910 | Reward=0.1845
+Step 148 | State=(35, 0, 5) | Exposure=500 | Before=0.8906 | After=0.9106 | Reward=-0.1999
+Step 149 | State=(30, 0, 5) | Exposure=10000 | Before=0.9111 | After=0.8907 | Reward=0.2038
+Step 150 | State=(35, 0, 5) | Exposure=5000 | Before=0.8911 | After=0.9022 | Reward=-0.1111
+Step 151 | State=(30, 0, 5) | Exposure=10000 | Before=0.9019 | After=0.8911 | Reward=0.1075
+Step 152 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8912 | Reward=-0.0040
+Step 153 | State=(35, 0, 5) | Exposure=10000 | Before=0.8917 | After=0.8913 | Reward=0.0039
+Step 154 | State=(35, 0, 5) | Exposure=10000 | Before=0.8916 | After=0.8909 | Reward=0.0066
+Step 155 | State=(35, 0, 5) | Exposure=10000 | Before=0.8902 | After=0.8904 | Reward=-0.0014
+Step 156 | State=(35, 0, 5) | Exposure=10000 | Before=0.8907 | After=0.8909 | Reward=-0.0018
+Step 157 | State=(35, 0, 5) | Exposure=5000 | Before=0.8907 | After=0.9017 | Reward=-0.1104
+Step 158 | State=(30, 0, 5) | Exposure=10000 | Before=0.9018 | After=0.8902 | Reward=0.1158
+Step 159 | State=(35, 0, 5) | Exposure=500 | Before=0.8908 | After=0.9108 | Reward=-0.2003
+Step 160 | State=(30, 0, 5) | Exposure=500 | Before=0.9108 | After=0.9104 | Reward=0.0044
+Step 161 | State=(30, 0, 5) | Exposure=10000 | Before=0.9107 | After=0.8907 | Reward=0.2003
+Step 162 | State=(35, 0, 5) | Exposure=10000 | Before=0.8914 | After=0.8913 | Reward=0.0007
+Step 163 | State=(35, 0, 5) | Exposure=10000 | Before=0.8911 | After=0.8911 | Reward=0.0001
+Step 164 | State=(35, 0, 5) | Exposure=10000 | Before=0.8911 | After=0.8905 | Reward=0.0059
+Step 165 | State=(35, 0, 5) | Exposure=5000 | Before=0.8907 | After=0.9017 | Reward=-0.1099
+Step 166 | State=(30, 0, 5) | Exposure=2000 | Before=0.9024 | After=0.9082 | Reward=-0.0579
+Step 167 | State=(30, 0, 5) | Exposure=10000 | Before=0.9077 | After=0.8912 | Reward=0.1646
+Step 168 | State=(35, 0, 5) | Exposure=10000 | Before=0.8911 | After=0.8915 | Reward=-0.0045
+Step 169 | State=(35, 0, 5) | Exposure=10000 | Before=0.8917 | After=0.8912 | Reward=0.0046
+Step 170 | State=(35, 0, 5) | Exposure=10000 | Before=0.8913 | After=0.8908 | Reward=0.0044
+Step 171 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8910 | Reward=-0.0002
+Step 172 | State=(35, 0, 5) | Exposure=2000 | Before=0.8915 | After=0.9079 | Reward=-0.1647
+Step 173 | State=(30, 0, 5) | Exposure=10000 | Before=0.9078 | After=0.8918 | Reward=0.1593
+Step 174 | State=(35, 0, 5) | Exposure=10000 | Before=0.8913 | After=0.8906 | Reward=0.0069
+Step 175 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8911 | Reward=-0.0024
+Step 176 | State=(35, 0, 5) | Exposure=1000 | Before=0.8912 | After=0.9099 | Reward=-0.1870
+Step 177 | State=(30, 0, 5) | Exposure=10000 | Before=0.9100 | After=0.8910 | Reward=0.1896
+Step 178 | State=(35, 0, 5) | Exposure=10000 | Before=0.8904 | After=0.8915 | Reward=-0.0109
+Step 179 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8909 | Reward=-0.0014
+Step 180 | State=(35, 0, 5) | Exposure=10000 | Before=0.8913 | After=0.8911 | Reward=0.0019
+Step 181 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8914 | Reward=-0.0043
+Step 182 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8909 | Reward=0.0000
+Step 183 | State=(35, 0, 5) | Exposure=2000 | Before=0.8904 | After=0.9076 | Reward=-0.1721
+Step 184 | State=(30, 0, 5) | Exposure=10000 | Before=0.9080 | After=0.8908 | Reward=0.1720
+Step 185 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8912 | Reward=-0.0016
+Step 186 | State=(35, 0, 5) | Exposure=10000 | Before=0.8906 | After=0.8905 | Reward=0.0008
+Step 187 | State=(35, 0, 5) | Exposure=10000 | Before=0.8913 | After=0.8904 | Reward=0.0090
+Step 188 | State=(35, 0, 5) | Exposure=10000 | Before=0.8906 | After=0.8913 | Reward=-0.0077
+Step 189 | State=(35, 0, 5) | Exposure=10000 | Before=0.8904 | After=0.8900 | Reward=0.0038
+Step 190 | State=(35, 0, 5) | Exposure=10000 | Before=0.8906 | After=0.8904 | Reward=0.0022
+Step 191 | State=(35, 0, 5) | Exposure=10000 | Before=0.8907 | After=0.8906 | Reward=0.0008
+Step 192 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8907 | Reward=0.0020
+Step 193 | State=(35, 0, 5) | Exposure=10000 | Before=0.8916 | After=0.8906 | Reward=0.0103
+Step 194 | State=(35, 0, 5) | Exposure=10000 | Before=0.8914 | After=0.8912 | Reward=0.0022
+Step 195 | State=(35, 0, 5) | Exposure=500 | Before=0.8916 | After=0.9111 | Reward=-0.1946
+Step 196 | State=(30, 0, 5) | Exposure=10000 | Before=0.9106 | After=0.8909 | Reward=0.1968
+Step 197 | State=(35, 0, 5) | Exposure=10000 | Before=0.8905 | After=0.8913 | Reward=-0.0075
+Step 198 | State=(35, 0, 5) | Exposure=10000 | Before=0.8905 | After=0.8909 | Reward=-0.0044
+Step 199 | State=(35, 0, 5) | Exposure=10000 | Before=0.8901 | After=0.8904 | Reward=-0.0031
+Step 200 | State=(35, 0, 5) | Exposure=10000 | Before=0.8903 | After=0.8910 | Reward=-0.0062
+Step 201 | State=(35, 0, 5) | Exposure=10000 | Before=0.8913 | After=0.8899 | Reward=0.0141
+Step 202 | State=(35, 0, 5) | Exposure=10000 | Before=0.8906 | After=0.8911 | Reward=-0.0052
+Step 203 | State=(35, 0, 5) | Exposure=10000 | Before=0.8906 | After=0.8907 | Reward=-0.0006
+Step 204 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8910 | Reward=-0.0013
+Step 205 | State=(35, 0, 5) | Exposure=10000 | Before=0.8912 | After=0.8909 | Reward=0.0030
+Step 206 | State=(35, 0, 5) | Exposure=10000 | Before=0.8913 | After=0.8912 | Reward=0.0011
+Step 207 | State=(35, 0, 5) | Exposure=10000 | Before=0.8911 | After=0.8910 | Reward=0.0008
+Step 208 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8899 | Reward=0.0111
+Step 209 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8906 | Reward=0.0033
+Step 210 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8909 | Reward=0.0008
+Step 211 | State=(35, 0, 5) | Exposure=10000 | Before=0.8912 | After=0.8900 | Reward=0.0125
+Step 212 | State=(35, 0, 5) | Exposure=10000 | Before=0.8911 | After=0.8908 | Reward=0.0036
+Step 213 | State=(35, 0, 5) | Exposure=1000 | Before=0.8917 | After=0.9096 | Reward=-0.1785
+Step 214 | State=(30, 0, 5) | Exposure=10000 | Before=0.9099 | After=0.8901 | Reward=0.1980
+Step 215 | State=(35, 0, 5) | Exposure=500 | Before=0.8904 | After=0.9107 | Reward=-0.2029
+Step 216 | State=(30, 0, 5) | Exposure=10000 | Before=0.9103 | After=0.8910 | Reward=0.1932
+Step 217 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8910 | Reward=-0.0021
+Step 218 | State=(35, 0, 5) | Exposure=500 | Before=0.8911 | After=0.9109 | Reward=-0.1983
+Step 219 | State=(30, 0, 5) | Exposure=2000 | Before=0.9103 | After=0.9076 | Reward=0.0274
+Step 220 | State=(30, 0, 5) | Exposure=10000 | Before=0.9073 | After=0.8908 | Reward=0.1653
+Step 221 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8909 | Reward=-0.0004
+Step 222 | State=(35, 0, 5) | Exposure=10000 | Before=0.8899 | After=0.8912 | Reward=-0.0129
+Step 223 | State=(35, 0, 5) | Exposure=10000 | Before=0.8911 | After=0.8910 | Reward=0.0008
+Step 224 | State=(35, 0, 5) | Exposure=5000 | Before=0.8904 | After=0.9016 | Reward=-0.1115
+Step 225 | State=(30, 0, 5) | Exposure=10000 | Before=0.9016 | After=0.8907 | Reward=0.1088
+Step 226 | State=(35, 0, 5) | Exposure=10000 | Before=0.8912 | After=0.8911 | Reward=0.0005
+Step 227 | State=(35, 0, 5) | Exposure=10000 | Before=0.8906 | After=0.8908 | Reward=-0.0013
+Step 228 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8906 | Reward=0.0039
+Step 229 | State=(35, 0, 5) | Exposure=10000 | Before=0.8908 | After=0.8913 | Reward=-0.0049
+Step 230 | State=(35, 0, 5) | Exposure=1000 | Before=0.8914 | After=0.9096 | Reward=-0.1821
+Step 231 | State=(30, 0, 5) | Exposure=10000 | Before=0.9097 | After=0.8908 | Reward=0.1896
+Step 232 | State=(35, 0, 5) | Exposure=10000 | Before=0.8906 | After=0.8913 | Reward=-0.0075
+Step 233 | State=(35, 0, 5) | Exposure=10000 | Before=0.8906 | After=0.8907 | Reward=-0.0011
+Step 234 | State=(35, 0, 5) | Exposure=10000 | Before=0.8904 | After=0.8906 | Reward=-0.0020
+Step 235 | State=(35, 0, 5) | Exposure=10000 | Before=0.8907 | After=0.8903 | Reward=0.0032
+Step 236 | State=(35, 0, 5) | Exposure=500 | Before=0.8908 | After=0.9103 | Reward=-0.1950
+Step 237 | State=(30, 0, 5) | Exposure=2000 | Before=0.9101 | After=0.9072 | Reward=0.0294
+Step 238 | State=(30, 0, 5) | Exposure=10000 | Before=0.9077 | After=0.8906 | Reward=0.1709
+Step 239 | State=(35, 0, 5) | Exposure=10000 | Before=0.8905 | After=0.8908 | Reward=-0.0033
+Step 240 | State=(35, 0, 5) | Exposure=10000 | Before=0.8909 | After=0.8905 | Reward=0.0035
+Step 241 | State=(35, 0, 5) | Exposure=10000 | Before=0.8903 | After=0.8909 | Reward=-0.0053
+Step 242 | State=(35, 0, 5) | Exposure=10000 | Before=0.8907 | After=0.8909 | Reward=-0.0018
+Step 243 | State=(35, 0, 5) | Exposure=10000 | Before=0.8902 | After=0.8904 | Reward=-0.0011
+Step 244 | State=(35, 0, 5) | Exposure=10000 | Before=0.8910 | After=0.8904 | Reward=0.0056
+Step 245 | State=(35, 0, 5) | Exposure=10000 | Before=0.8901 | After=0.8903 | Reward=-0.0022
+Step 246 | State=(35, 0, 5) | Exposure=5000 | Before=0.8907 | After=0.9015 | Reward=-0.1082
+Step 247 | State=(30, 0, 5) | Exposure=10000 | Before=0.9012 | After=0.8903 | Reward=0.1091
+Step 248 | State=(35, 0, 5) | Exposure=5000 | Before=0.8896 | After=0.9017 | Reward=-0.1216
+Step 249 | State=(30, 0, 5) | Exposure=10000 | Before=0.9012 | After=0.8900 | Reward=0.1120
+Step 250 | State=(35, 0, 5) | Exposure=5000 | Before=0.8903 | After=0.9011 | Reward=-0.1079
+Step 251 | State=(30, 0, 5) | Exposure=1000 | Before=0.9010 | After=0.9095 | Reward=-0.0846
+Step 252 | State=(30, 0, 5) | Exposure=10000 | Before=0.9098 | After=0.8902 | Reward=0.1958
+Step 253 | State=(35, 0, 5) | Exposure=5000 | Before=0.8911 | After=0.9014 | Reward=-0.1036
+Step 254 | State=(30, 0, 5) | Exposure=10000 | Before=0.9016 | After=0.8910 | Reward=0.1060
+Step 255 | State=(35, 0, 5) | Exposure=5000 | Before=0.8899 | After=0.9015 | Reward=-0.1161
+Step 256 | State=(30, 0, 5) | Exposure=10000 | Before=0.9017 | After=0.8916 | Reward=0.1014
+Step 257 | State=(35, 0, 5) | Exposure=5000 | Before=0.8907 | After=0.9016 | Reward=-0.1088
+Step 258 | State=(30, 0, 5) | Exposure=10000 | Before=0.9013 | After=0.8906 | Reward=0.1071
+Step 259 | State=(35, 0, 5) | Exposure=10000 | Before=0.8904 | After=0.8903 | Reward=0.0001
+Step 260 | State=(35, 0, 5) | Exposure=5000 | Before=0.8905 | After=0.9012 | Reward=-0.1066
+Step 261 | State=(30, 0, 5) | Exposure=10000 | Before=0.9014 | After=0.8903 | Reward=0.1109
+Step 262 | State=(35, 0, 5) | Exposure=10000 | Before=0.8904 | After=0.8902 | Reward=0.0019
+Step 263 | State=(35, 0, 5) | Exposure=1000 | Before=0.8905 | After=0.9095 | Reward=-0.1898
+Step 264 | State=(30, 0, 5) | Exposure=10000 | Before=0.9091 | After=0.8905 | Reward=0.1858
+Step 265 | State=(35, 0, 5) | Exposure=10000 | Before=0.8898 | After=0.8907 | Reward=-0.0091
+Step 266 | State=(35, 0, 5) | Exposure=5000 | Before=0.8906 | After=0.9009 | Reward=-0.1024
+Step 267 | State=(30, 0, 5) | Exposure=5000 | Before=0.9008 | After=0.9015 | Reward=-0.0067
+Step 268 | State=(30, 0, 5) | Exposure=10000 | Before=0.9013 | After=0.8908 | Reward=0.1051
+Step 269 | State=(35, 0, 5) | Exposure=5000 | Before=0.8903 | After=0.9013 | Reward=-0.1103
+Step 270 | State=(30, 0, 5) | Exposure=10000 | Before=0.9012 | After=0.8910 | Reward=0.1025
+Step 271 | State=(35, 0, 5) | Exposure=5000 | Before=0.8913 | After=0.9014 | Reward=-0.1010
+Step 272 | State=(30, 0, 5) | Exposure=10000 | Before=0.9015 | After=0.8909 | Reward=0.1059
+Step 273 | State=(35, 0, 5) | Exposure=5000 | Before=0.8908 | After=0.9017 | Reward=-0.1083
+Step 274 | State=(30, 0, 5) | Exposure=2000 | Before=0.9016 | After=0.9074 | Reward=-0.0579
+Step 275 | State=(30, 0, 5) | Exposure=500 | Before=0.9080 | After=0.9108 | Reward=-0.0287
+Step 276 | State=(30, 0, 5) | Exposure=10000 | Before=0.9108 | After=0.8911 | Reward=0.1972
+Step 277 | State=(35, 0, 5) | Exposure=5000 | Before=0.8911 | After=0.9023 | Reward=-0.1118
+Step 278 | State=(30, 0, 5) | Exposure=10000 | Before=0.9022 | After=0.8918 | Reward=0.1043
+Step 279 | State=(35, 0, 5) | Exposure=5000 | Before=0.8913 | After=0.9016 | Reward=-0.1028
+Step 280 | State=(30, 0, 5) | Exposure=10000 | Before=0.9019 | After=0.8912 | Reward=0.1066
+Step 281 | State=(35, 0, 5) | Exposure=5000 | Before=0.8913 | After=0.9014 | Reward=-0.1007
+Step 282 | State=(30, 0, 5) | Exposure=10000 | Before=0.9021 | After=0.8909 | Reward=0.1119
+Step 283 | State=(35, 0, 5) | Exposure=5000 | Before=0.8914 | After=0.9018 | Reward=-0.1040
+Step 284 | State=(30, 0, 5) | Exposure=10000 | Before=0.9019 | After=0.8897 | Reward=0.1220
+Step 285 | State=(35, 0, 5) | Exposure=5000 | Before=0.8915 | After=0.9012 | Reward=-0.0969
+Step 286 | State=(30, 0, 5) | Exposure=500 | Before=0.9017 | After=0.9108 | Reward=-0.0913
+Step 287 | State=(30, 0, 5) | Exposure=1000 | Before=0.9111 | After=0.9096 | Reward=0.0153
+Step 288 | State=(30, 0, 5) | Exposure=10000 | Before=0.9098 | After=0.8906 | Reward=0.1922
+Step 289 | State=(35, 0, 5) | Exposure=5000 | Before=0.8911 | After=0.9020 | Reward=-0.1087
+Step 290 | State=(30, 0, 5) | Exposure=10000 | Before=0.9017 | After=0.8908 | Reward=0.1090
+Step 291 | State=(35, 0, 5) | Exposure=5000 | Before=0.8915 | After=0.9013 | Reward=-0.0976
+Step 292 | State=(30, 0, 5) | Exposure=10000 | Before=0.9016 | After=0.8909 | Reward=0.1077
+Step 293 | State=(35, 0, 5) | Exposure=5000 | Before=0.8914 | After=0.9020 | Reward=-0.1056
+Step 294 | State=(30, 0, 5) | Exposure=10000 | Before=0.9021 | After=0.8913 | Reward=0.1080
+Step 295 | State=(35, 0, 5) | Exposure=5000 | Before=0.8901 | After=0.9018 | Reward=-0.1170
+Step 296 | State=(30, 0, 5) | Exposure=10000 | Before=0.9017 | After=0.8913 | Reward=0.1042
+Step 297 | State=(35, 0, 5) | Exposure=500 | Before=0.8906 | After=0.9103 | Reward=-0.1966
+Step 298 | State=(30, 0, 5) | Exposure=2000 | Before=0.9103 | After=0.9076 | Reward=0.0263
+Step 299 | State=(30, 0, 5) | Exposure=10000 | Before=0.9084 | After=0.8913 | Reward=0.1708
+Step 300 | State=(35, 0, 5) | Exposure=5000 | Before=0.8910 | After=0.9016 | Reward=-0.1065
+Q-table saved to /home/seongho/SURF_rl_camera_optimization/experiment_data/lighting_change_run_02/q_table.pkl
+
+=== Training complete ===
+Learned states: 2
+Q-table: /home/seongho/SURF_rl_camera_optimization/experiment_data/lighting_change_run_02/q_table.pkl
+CSV: /home/seongho/SURF_rl_camera_optimization/experiment_data/lighting_change_run_02/training/training_results.csv
+camera closed
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ grep -n "fine_pattern_run_01" project/analyze_exposure.py
+9:EXPERIMENT_NAME = "fine_pattern_run_01"
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3  project/analyze_exposure.py
+
+=== Exposure Analysis ===
+Exposure | Samples | Mean Proxy
+--------------------------------
+     500 |      15 | 0.9106
+    1000 |       9 | 0.9096
+    2000 |      12 | 0.9077
+    5000 |      50 | 0.9015
+   10000 |     214 | 0.8908
+
+Lowest mean proxy: 10000 us
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3  project/run_evaluation.py
+camera initialized
+image analyzer is initilaized
+Q-table loaded from /home/seongho/SURF_rl_camera_optimization/experiment_data/lighting_change_run_02/q_table.pkl
+=== Evaluation started ===
+Loaded states: 2
+Epsilon: 0.0
+Actions: [500, 1000, 2000, 5000, 10000]
+
+Step 001 | State=(30, 0, 5) | Exposure=10000 | Before=0.9017 | After=0.8907 | Reward=0.1096 | Seen=True
+Step 002 | State=(35, 0, 5) | Exposure=5000 | Before=0.8914 | After=0.9020 | Reward=-0.1061 | Seen=True
+Step 003 | State=(30, 0, 5) | Exposure=10000 | Before=0.9018 | After=0.8914 | Reward=0.1044 | Seen=True
+Step 004 | State=(35, 0, 5) | Exposure=5000 | Before=0.8914 | After=0.9018 | Reward=-0.1034 | Seen=True
+Step 005 | State=(30, 0, 5) | Exposure=10000 | Before=0.9020 | After=0.8911 | Reward=0.1092 | Seen=True
+Step 006 | State=(35, 0, 5) | Exposure=5000 | Before=0.8907 | After=0.9019 | Reward=-0.1117 | Seen=True
+Step 007 | State=(30, 0, 5) | Exposure=10000 | Before=0.9021 | After=0.8904 | Reward=0.1162 | Seen=True
+Step 008 | State=(35, 0, 5) | Exposure=5000 | Before=0.8904 | After=0.9014 | Reward=-0.1102 | Seen=True
+Step 009 | State=(30, 0, 5) | Exposure=10000 | Before=0.9020 | After=0.8916 | Reward=0.1048 | Seen=True
+Step 010 | State=(35, 0, 5) | Exposure=5000 | Before=0.8910 | After=0.9016 | Reward=-0.1060 | Seen=True
+Step 011 | State=(30, 0, 5) | Exposure=10000 | Before=0.9017 | After=0.8918 | Reward=0.0997 | Seen=True
+Step 012 | State=(35, 0, 5) | Exposure=5000 | Before=0.8908 | After=0.9020 | Reward=-0.1122 | Seen=True
+Step 013 | State=(30, 0, 5) | Exposure=10000 | Before=0.9015 | After=0.8905 | Reward=0.1093 | Seen=True
+Step 014 | State=(35, 0, 5) | Exposure=5000 | Before=0.8907 | After=0.9023 | Reward=-0.1157 | Seen=True
+Step 015 | State=(30, 0, 5) | Exposure=10000 | Before=0.9017 | After=0.8905 | Reward=0.1113 | Seen=True
+Step 016 | State=(35, 0, 5) | Exposure=5000 | Before=0.8912 | After=0.9015 | Reward=-0.1037 | Seen=True
+Step 017 | State=(30, 0, 5) | Exposure=10000 | Before=0.9020 | After=0.8915 | Reward=0.1050 | Seen=True
+Step 018 | State=(35, 0, 5) | Exposure=5000 | Before=0.8909 | After=0.9019 | Reward=-0.1101 | Seen=True
+Step 019 | State=(30, 0, 5) | Exposure=10000 | Before=0.9014 | After=0.8907 | Reward=0.1066 | Seen=True
+Step 020 | State=(35, 0, 5) | Exposure=5000 | Before=0.8913 | After=0.9016 | Reward=-0.1034 | Seen=True
+Step 021 | State=(30, 0, 5) | Exposure=10000 | Before=0.9019 | After=0.8906 | Reward=0.1132 | Seen=True
+Step 022 | State=(35, 0, 5) | Exposure=5000 | Before=0.8914 | After=0.9015 | Reward=-0.1004 | Seen=True
+Step 023 | State=(30, 0, 5) | Exposure=10000 | Before=0.9017 | After=0.8911 | Reward=0.1061 | Seen=True
+Step 024 | State=(35, 0, 5) | Exposure=5000 | Before=0.8910 | After=0.9018 | Reward=-0.1081 | Seen=True
+Step 025 | State=(30, 0, 5) | Exposure=10000 | Before=0.9019 | After=0.8909 | Reward=0.1099 | Seen=True
+Step 026 | State=(35, 0, 5) | Exposure=5000 | Before=0.8909 | After=0.9021 | Reward=-0.1117 | Seen=True
+Step 027 | State=(30, 0, 5) | Exposure=10000 | Before=0.9015 | After=0.8908 | Reward=0.1067 | Seen=True
+Step 028 | State=(35, 0, 5) | Exposure=5000 | Before=0.8911 | After=0.9021 | Reward=-0.1101 | Seen=True
+Step 029 | State=(30, 0, 5) | Exposure=10000 | Before=0.9018 | After=0.8912 | Reward=0.1056 | Seen=True
+Step 030 | State=(35, 0, 5) | Exposure=5000 | Before=0.8913 | After=0.9019 | Reward=-0.1055 | Seen=True
+
+=== Evaluation Summary ===
+Mean after proxy: 0.8964
+Std after proxy: 0.0054
+Mean reward: -0.0
+Known states: 30/30
+
+Exposure selection counts:
+500: 0
+1000: 0
+2000: 0
+5000: 15
+10000: 15
+
+Saved: /home/seongho/SURF_rl_camera_optimization/experiment_data/lighting_change_run_02/evaluation/evaluation_results.csv
+camera closed
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ head -3 experiment_data/lighting_change_run_02/evaluation/evaluation_results.csv
+step,state_key,state_seen,selected_exposure,before_proxy,after_proxy,reward,brightness_before,contrast_before,sharpness_before,brightness_after,contrast_after,sharpness_after,image_before,image_after,q_500,q_1000,q_2000,q_5000,q_10000
+1,"(30, 0, 5)",True,10000,0.9016727076735375,0.8907102311679653,0.10962476505572138,34.10761523246765,1.1910802781631173,7.232451642607323,37.6994264125824,1.4576814467931067,8.052877110530972,/home/seongho/SURF_rl_camera_optimization/experiment_data/lighting_change_run_02/evaluation/10000/step_001_before.png,/home/seongho/SURF_rl_camera_optimization/experiment_data/lighting_change_run_02/evaluation/10000/step_001_after.png,0.022329851411616766,0.019962866140325997,0.05346016198984161,0.027548859093949787,0.14766598971551553
+2,"(35, 0, 5)",True,5000,0.8913913979452075,0.9020032419615348,-0.1061184401632731,37.468270778656006,1.4429155763755992,8.043195230434321,33.99251890182495,1.1841893735676876,7.247755731199852,/home/seongho/SURF_rl_camera_optimization/experiment_data/lighting_change_run_02/evaluation/5000/step_002_before.png,/home/seongho/SURF_rl_camera_optimization/experiment_data/lighting_change_run_02/evaluation/5000/step_002_after.png,-0.05324707951870471,-0.030172316105984323,-0.03625245734580337,0.02370359762017669,0.0038226154754593244
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ nano project/check_q_values.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/check_q_values.py
+  File "/home/seongho/SURF_rl_camera_optimization/project/check_q_values.py", line 19
+    for row in reader:
+                      ^
+IndentationError: unindent does not match any outer indentation level
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ nano project/check_q_values.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ nano project/check_q_values.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/check_q_values.py
+  File "/home/seongho/SURF_rl_camera_optimization/project/check_q_values.py", line 19
+    for row in reader:
+                      ^
+IndentationError: unindent does not match any outer indentation level
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ expand -t 4 project/check_q_values.py > /tmp/check_q_values.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ mv /tmp/check_q_values/py project/check_q_values.py
+mv: cannot stat '/tmp/check_q_values/py': No such file or directory
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ mv /tmp/check_q_values.py project/check_q_values.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/check_q_values.py
+  File "/home/seongho/SURF_rl_camera_optimization/project/check_q_values.py", line 19
+    for row in reader:
+                      ^
+IndentationError: unindent does not match any outer indentation level
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ nano project/check_q_values.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   camera/__pycache__/__init__.cpython-310.pyc
+	modified:   environment/__pycache__/__init__.cpython-310.pyc
+	modified:   environment/__pycache__/camera_environment.cpython-310.pyc
+	modified:   project/analyze_baseline.py
+	modified:   project/analyze_exposure.py
+	modified:   project/run_baseline.py
+	modified:   project/run_evaluation.py
+	modified:   project/run_training.py
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	baseline_1000.png
+	baseline_10000.png
+	baseline_2000.png
+	baseline_500.png
+	baseline_5000.png
+	experiment_data/10.16 defect_run_01/
+	experiment_data/lighting_change_run_02/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git fetch origin
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 4 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (4/4), 1.27 KiB | 434.00 KiB/s, done.
+From github.com:hapinza/SURF_rl_camera_optimization
+   ac2e336..57985ea  main       -> origin/main
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git ls-tree -r origin/main --name-only | grep check_q_values
+project/check_q_values.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git fetch origin
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ git restore --source=origin/main -- project/check_q_values.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ ls project/check_q_values.py
+project/check_q_values.py
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/check_q_values.py
+Traceback (most recent call last):
+  File "/home/seongho/SURF_rl_camera_optimization/project/check_q_values.py", line 16, in <module>
+    state = row["state"]
+KeyError: 'state'
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ python3 project/check_q_values.py
+
+State: (30, 0, 5)
+Selected exposure: 10000
+  500 us -> Q = 0.022330
+ 1000 us -> Q = 0.019963
+ 2000 us -> Q = 0.053460
+ 5000 us -> Q = 0.027549
+10000 us -> Q = 0.147666
+
+State: (35, 0, 5)
+Selected exposure: 5000
+  500 us -> Q = -0.053247
+ 1000 us -> Q = -0.030172
+ 2000 us -> Q = -0.036252
+ 5000 us -> Q = 0.023704
+10000 us -> Q = 0.003823
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ ^C
+seongho@seongho-desktop:~/SURF_rl_camera_optimization$ 
+
