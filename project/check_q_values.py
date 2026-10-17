@@ -13,7 +13,7 @@ with open(CSV_FILE, newline="") as f:
     reader = csv.DictReader(f)
 
     for row in reader:
-        state = row["state"]
+        state = row["state_key"]
 
         if state in seen:
             continue
